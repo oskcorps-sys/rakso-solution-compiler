@@ -1,6 +1,8 @@
-# SDD+ Integration Policy
+# SDD+ Genesis Governance Policy
 
-RAKSO Solution Compiler uses SDD+ as its governance backbone.
+RAKSO Solution Compiler is born under SDD+ Genesis Governance.
+
+SDD+ is not a helper, add-on, or optional integration. It is the genesis governance framework for every project that RAKSO creates.
 
 Source repository:
 
@@ -8,23 +10,57 @@ Source repository:
 https://github.com/oskcorps-sys/sdd-plus
 ```
 
-## Why SDD+ is the base
+## Core position
 
-SDD+ is a specification-driven, LLM-agnostic governance framework for AI-assisted development.
+```txt
+SDD+ = Project Genesis OS
+RAKSO Solution Compiler = Business Solution Genesis Module built under SDD+
+```
 
-Its core principle is binding for this repo:
+SDD+ governs how a project is born, refined, locked, implemented, audited, completed, and evolved.
+
+RAKSO Solution Compiler extends SDD+ with business-specific artifacts:
+
+- Evidence Ledger
+- Business Reality Diagnosis
+- Pain-to-Profit
+- Offer Architecture
+- Solution Type Decision
+- Market Expansion Loop
+
+## Binding principle
 
 ```txt
 Specifications are binding. Code follows spec, not vice versa.
 Audit is independent and impartial.
 ```
 
-RAKSO Solution Compiler extends this idea from code into business solution design.
+For this repo, the principle expands into:
+
+```txt
+Business reality becomes evidence.
+Evidence becomes diagnosis.
+Diagnosis becomes money logic.
+Money logic becomes offer.
+Offer becomes SDD+ contract.
+Contract becomes execution.
+```
+
+## Hierarchy
+
+| Level | System | Role |
+|---|---|---|
+| 0 | SDD+ | Genesis governance framework |
+| 1 | RAKSO Solution Compiler | Business solution generation module |
+| 2 | SpellWriter / Artifact Compiler | Runtime artifact compiler |
+| 3 | Codex / Claude / Antigravity / Human | Executors |
+| 4 | External Auditor | Independent validation gate |
 
 ## Mapping
 
 | SDD+ concept | RAKSO Solution Compiler usage |
 |---|---|
+| Project genesis | No project starts from code, prompt, automation, or agent design |
 | Spec-first workflow | Business reality must become structured artifacts before implementation |
 | Independent audit gates | Builder and auditor must be different roles/executors |
 | State machine | Major work must move through lifecycle states before approval |
@@ -33,18 +69,20 @@ RAKSO Solution Compiler extends this idea from code into business solution desig
 | Telemetry | Important transitions and audits should be logged |
 | LLM-agnostic execution | Claude, Codex, GPT, Gemini, Ollama, or humans may execute roles |
 
-## Required flow for implementation work
+## Required flow for project genesis
 
 ```txt
-SDD+ Spec
+Idea / Business Need / Client Chaos
+  -> SDD+ Phase 0 Spec
   -> SDD+ Contract
+  -> LOCKED Scope
   -> Implementation Issue
   -> Builder Execution
   -> Critical Lens Review
   -> External Audit
   -> Fix Loop
   -> Human Approval
-  -> Merge
+  -> Completed Phase
 ```
 
 ## Builder != Auditor
@@ -93,7 +131,7 @@ RAKSO artifact interpretation:
 
 ## Enforcement policy
 
-This repo should eventually use `AGENTS.yaml` role enforcement from SDD+.
+This repo should use `AGENTS.yaml` role enforcement from SDD+ once the initial Phase 0 contract is ready.
 
 Initial recommended roles:
 
@@ -105,8 +143,11 @@ Initial recommended roles:
 
 Production mode should use `strict_allowlist` once schemas and module boundaries stabilize.
 
-## Rule
+## Rules
 
+```txt
+Every RAKSO project begins under SDD+.
+No project starts directly from code, prompt, automation, or agent design.
 No SDD+ contract, no build.
-
 No independent audit, no merge.
+```
