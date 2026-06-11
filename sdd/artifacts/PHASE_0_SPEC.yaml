@@ -1,0 +1,54 @@
+﻿phase: 0
+created_at: "2026-06-11T00:00:00Z"
+title: "Phase 0 - Genesis Setup"
+description: "Initialize RAKSO Solution Compiler under SDD+ Genesis Governance without implementation work."
+
+success_criteria:
+  - "Repository has a valid STATE_SNAPSHOT.yaml."
+  - "Repository has a valid PHASE_0_SPEC.yaml."
+  - "Project remains in DRAFT until the spec is refined."
+  - "No contract or implementation files are created during Phase 0 DRAFT."
+
+scope:
+  included:
+    - "Initialize SDD+ required artifacts."
+    - "Define project mission and boundaries."
+    - "Define allowed next actions under DRAFT."
+  deferred:
+    - "PHASE_0_CONTRACT.yaml"
+    - "Implementation code"
+    - "Schemas"
+    - "Runtime integrations"
+    - "Automation workflows"
+
+inputs:
+  source_framework: "sdd-plus"
+  repository: "oskcorps-sys/rakso-solution-compiler"
+
+outputs:
+  required:
+    - "STATE_SNAPSHOT.yaml"
+    - "PHASE_0_SPEC.yaml"
+
+constraints:
+  - "Follow SDD+ lifecycle without shortcuts."
+  - "Do not create a contract before the spec is refined."
+  - "Do not implement before LOCKED."
+  - "Builder cannot self-approve."
+
+assumptions:
+  - "RAKSO Solution Compiler is a project born under SDD+ Genesis Governance."
+  - "Phase 0 is only for initialization and scope definition."
+
+acceptance_tests:
+  - id: "AT-001"
+    description: "sdd status reports Phase 0 and DRAFT."
+  - id: "AT-002"
+    description: "sdd validate passes for STATE_SNAPSHOT.yaml."
+  - id: "AT-003"
+    description: "sdd validate passes for PHASE_0_SPEC.yaml."
+  - id: "AT-004"
+    description: "No PHASE_0_CONTRACT.yaml exists during DRAFT."
+
+dependencies:
+  - "sdd-plus installed and callable through sdd.exe"
