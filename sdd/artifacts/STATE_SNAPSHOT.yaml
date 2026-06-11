@@ -1,0 +1,15 @@
+project: rakso-solution-compiler
+framework: sdd-plus
+phase: 0
+state: DRAFT
+current_artifact: PHASE_0_SPEC.yaml
+previous_gate: null
+next_allowed_gate: REFINED
+next_allowed_action: refine_phase_0_spec
+source_of_truth:
+  sdd_plus_repo: https://github.com/oskcorps-sys/sdd-plus
+  lifecycle: DRAFT -> REFINED -> LOCKED -> IMPLEMENTING -> AUDITING -> COMPLETED
+notes:
+  - No contract may be created until the Phase 0 Spec is refined and ready for lock.
+  - No implementation may start until LOCKED.
+  - External blind audit belongs to the AUDITING gate and must not create a new lifecycle state.
