@@ -1,0 +1,83 @@
+phase: 0
+created_at: "2026-06-12T11:30:00Z"
+contract_id: "phase-0-genesis-setup"
+status: "DRAFT"
+description: "Binding Phase 0 as a genesis/setup phase only; no product implementation is authorized."
+
+specification:
+  title: "Phase 0 - Genesis Setup"
+  spec_ref: "sdd/artifacts/PHASE_0_SPEC.yaml"
+  purpose: "Bind repository initialization and SDD+ governance readiness for RAKSO Solution Compiler."
+  scope:
+    included:
+      - "Confirm STATE_SNAPSHOT.yaml remains valid."
+      - "Confirm PHASE_0_SPEC.yaml remains valid."
+      - "Confirm Phase 0 is locked before contract planning."
+      - "Confirm no implementation work exists or is authorized by this contract."
+    excluded:
+      - "Product implementation"
+      - "Runtime integrations"
+      - "Schemas"
+      - "Modules"
+      - "Automation workflows"
+
+inputs:
+  state_snapshot:
+    type: "dict"
+    required: true
+    description: "The current SDD+ lifecycle state for the repository."
+    example: {"current_phase": 0, "current_state": "LOCKED"}
+    constraints: "Must validate against StateSnapshotSchema and remain phase 0 / LOCKED."
+  phase_spec:
+    type: "dict"
+    required: true
+    description: "The locked Phase 0 specification."
+    example: {"phase": 0, "title": "Phase 0 - Genesis Setup"}
+    constraints: "Must validate against PhaseSpecSchema."
+
+outputs:
+  phase_0_contract:
+    type: "dict"
+    description: "The Phase 0 contract artifact for genesis/setup governance only."
+    example: {"contract_id": "phase-0-genesis-setup", "status": "DRAFT"}
+    schema_ref: "/workspace/sdd-plus/sdd/schemas/contract.py"
+    validation_rule: "Must validate against ContractSchema."
+
+constraints:
+  - "This contract does not authorize product implementation."
+  - "Do not create implementation code in Phase 0."
+  - "Do not create schemas, modules, or runtime integrations in Phase 0."
+  - "Do not transition lifecycle state as part of contract creation."
+  - "Do not self-approve this contract."
+  - "Contract approval or commitment requires a separate authorized review."
+
+assumptions:
+  - "The repository is already in Phase 0 / LOCKED."
+  - "PHASE_0_SPEC.yaml is the current locked specification."
+  - "PHASE_0_CONTRACT.yaml did not exist before this task."
+  - "No implementation files exist before contract creation."
+
+acceptance_tests:
+  - name: "test_phase_0_contract_validates"
+    given: "PHASE_0_CONTRACT.yaml exists under sdd/artifacts."
+    when: "The artifact is loaded with /workspace/sdd-plus ContractSchema."
+    then: "Validation succeeds."
+  - name: "test_phase_0_state_remains_locked"
+    given: "STATE_SNAPSHOT.yaml exists under sdd/artifacts."
+    when: "The artifact is loaded with /workspace/sdd-plus StateSnapshotSchema."
+    then: "current_phase is 0 and current_state is LOCKED."
+  - name: "test_phase_0_contract_does_not_authorize_implementation"
+    given: "PHASE_0_CONTRACT.yaml is reviewed."
+    when: "Its specification, constraints, and deferred items are inspected."
+    then: "Product implementation, schemas, modules, runtime integrations, and automation workflows remain deferred."
+  - name: "test_no_implementation_files_exist"
+    given: "The repository is scanned for implementation file extensions."
+    when: "The scan runs before any later lifecycle phase authorizes implementation."
+    then: "No implementation files are present."
+
+defer_to_next_phase:
+  - "Implementation code is deferred until the lifecycle explicitly permits implementation."
+  - "Product schemas are deferred to a later authorized phase."
+  - "Runtime integrations are deferred to a later authorized phase."
+  - "Modules and automation workflows are deferred to a later authorized phase."
+  - "Contract approval, commitment, or audit is deferred to a separate authorized review."
