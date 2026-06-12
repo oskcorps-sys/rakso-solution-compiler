@@ -6,14 +6,16 @@ description: "Initialize RAKSO Solution Compiler under SDD+ Genesis Governance w
 success_criteria:
   - "Repository has a valid STATE_SNAPSHOT.yaml."
   - "Repository has a valid PHASE_0_SPEC.yaml."
-  - "Project remains in DRAFT until the spec is refined."
-  - "No contract or implementation files are created during Phase 0 DRAFT."
+  - "Phase 0 remains REFINED until a human-authorized transition to LOCKED."
+  - "PHASE_0_CONTRACT.yaml is forbidden before LOCKED."
+  - "LOCKED authorizes contract creation planning, not implementation."
+  - "No implementation work is allowed before the lifecycle permits it."
 
 scope:
   included:
     - "Initialize SDD+ required artifacts."
     - "Define project mission and boundaries."
-    - "Define allowed next actions under DRAFT."
+    - "Define the REFINED to LOCKED gate for Phase 0."
   deferred:
     - "PHASE_0_CONTRACT.yaml"
     - "Implementation code"
@@ -32,8 +34,9 @@ outputs:
 
 constraints:
   - "Follow SDD+ lifecycle without shortcuts."
-  - "Do not create a contract before the spec is refined."
-  - "Do not implement before LOCKED."
+  - "Do not create PHASE_0_CONTRACT.yaml before LOCKED."
+  - "LOCKED authorizes contract creation planning only."
+  - "Do not implement before the lifecycle permits implementation."
   - "Builder cannot self-approve."
 
 assumptions:
@@ -42,13 +45,17 @@ assumptions:
 
 acceptance_tests:
   - id: "AT-001"
-    description: "sdd status reports Phase 0 and DRAFT."
+    description: "sdd status reports Phase 0 and REFINED."
   - id: "AT-002"
     description: "sdd validate passes for STATE_SNAPSHOT.yaml."
   - id: "AT-003"
     description: "sdd validate passes for PHASE_0_SPEC.yaml."
   - id: "AT-004"
-    description: "No PHASE_0_CONTRACT.yaml exists during DRAFT."
+    description: "No PHASE_0_CONTRACT.yaml exists before LOCKED."
+  - id: "AT-005"
+    description: "LOCKED readiness review confirms contract planning is allowed only after human authorization."
+  - id: "AT-006"
+    description: "No implementation files exist before the lifecycle permits implementation."
 
 dependencies:
   - "sdd-plus installed and callable through sdd.exe"
