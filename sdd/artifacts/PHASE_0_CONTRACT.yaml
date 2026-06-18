@@ -27,7 +27,7 @@ inputs:
     required: true
     description: "The current SDD+ lifecycle state for the repository."
     example: {"current_phase": 0, "current_state": "LOCKED"}
-    constraints: "Must validate against StateSnapshotSchema and remain phase 0 / LOCKED."
+    constraints: "Must validate against StateSnapshotSchema, remain current_phase 0, and be valid for the current SDD+ audit context."
   phase_spec:
     type: "dict"
     required: true

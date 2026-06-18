@@ -9,5 +9,5 @@ metadata:
   project: rakso-solution-compiler
   framework: sdd-plus
   current_artifact: PHASE_0_SPEC.yaml
-  next_allowed_action: refine_phase_0_spec
+  next_allowed_action: complete_phase_0_audit_gate
 locked_at: '2026-06-12T11:17:28.698173Z'
