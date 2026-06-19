@@ -1,0 +1,95 @@
+phase: 1
+created_at: "2026-06-19T00:00:00Z"
+title: "Phase 1 - Discovery and Problem Definition"
+description: "Governance/discovery artifact defining the problem boundary for RAKSO Solution Compiler without authorizing architecture or implementation."
+
+problem_definition:
+  summary: "RAKSO Solution Compiler must define how business chaos is converted into sellable, executable solutions before any product architecture or implementation work begins."
+  bounded_problem:
+    - "Clarify what business problem the system is allowed to address."
+    - "Separate evidence-backed business reality from assumptions, opinions, and desired automation."
+    - "Define what must be known before later phases can consider architecture, schemas, modules, runtime integrations, workflows, or agent behavior."
+  out_of_scope_problem_claims:
+    - "Claims that require product architecture to validate."
+    - "Claims that require implementation code, schemas, modules, integrations, or automation workflows."
+    - "Claims that define AI or agent behavior before an authorized design phase."
+
+source_of_truth_boundaries:
+  primary_sources:
+    - "sdd/artifacts/STATE_SNAPSHOT.yaml"
+    - "sdd/artifacts/PHASE_1_CONTRACT.yaml"
+    - "sdd/artifacts/PHASE_0_CONTRACT.yaml"
+    - "docs/00_DOCTRINE.md"
+    - "docs/01_BLUEPRINT.md"
+    - "docs/02_ROADMAP.md"
+    - "docs/03_CRITICAL_LENS.md"
+    - "docs/04_SDD_PLUS_INTEGRATION.md"
+  precedence:
+    - "SDD+ lifecycle state and committed contracts govern what work is allowed."
+    - "Repository doctrine and roadmap documents provide discovery source material."
+    - "Critical Lens checkpoints constrain claims that are unsupported, premature, or implementation-biased."
+  boundary_rules:
+    - "Source documents are read-only inputs for this artifact."
+    - "Discovery may classify and reference source material but must not rewrite doctrine, roadmap, or integration documents."
+    - "When source materials conflict, the conflict remains an open question until resolved by an authorized governance step."
+
+evidence_requirements:
+  required_classifications:
+    - "evidence_backed_fact"
+    - "assumption"
+    - "open_question"
+    - "deferred_claim"
+  claim_rules:
+    - "Business pain claims must cite source material or be marked as assumptions."
+    - "Value claims must identify the business outcome they depend on or remain deferred."
+    - "User, workflow, and operational constraint claims must distinguish observed reality from intended design."
+    - "No claim may imply a product architecture, schema, module, integration, workflow, or agent behavior."
+  minimum_readiness_evidence:
+    - "Problem boundary is stated without implementation commitments."
+    - "Source-of-truth hierarchy is clear."
+    - "Known assumptions and open questions are listed explicitly."
+    - "Forbidden implementation surface is preserved."
+
+assumptions:
+  - "Phase 0 is completed and Phase 1 is in IMPLEMENTING."
+  - "PHASE_1_CONTRACT.yaml is COMMITTED and authorizes this discovery artifact."
+  - "Existing docs and SDD+ artifacts are sufficient to define an initial problem boundary."
+  - "Later architecture or implementation phases may revise discovery findings through authorized SDD+ gates."
+
+open_questions:
+  - "Which business situations are first-class inputs for the future compiler?"
+  - "What evidence threshold is required before a business pain can be treated as actionable?"
+  - "Which source documents should dominate when doctrine, roadmap, and integration notes use different framing?"
+  - "What must remain manual in the first usable version to preserve clarity before automation?"
+  - "What review evidence is required before later phases may define architecture or agent behavior?"
+
+non_goals:
+  - "Do not design solution architecture."
+  - "Do not design product schemas."
+  - "Do not define modules."
+  - "Do not define runtime integrations."
+  - "Do not define automation workflows."
+  - "Do not design agents, prompts, tools, or AI system behavior."
+  - "Do not create product implementation code or product artifacts."
+
+forbidden_surface:
+  product_implementation_code: "forbidden"
+  product_schemas: "forbidden"
+  modules: "forbidden"
+  runtime_integrations: "forbidden"
+  automation_workflows: "forbidden"
+  solution_architecture: "forbidden"
+  agent_or_ai_system_behavior_design: "forbidden"
+  product_artifacts: "forbidden"
+
+readiness_criteria:
+  - id: "RC-001"
+    description: "Problem definition is bounded and does not authorize implementation."
+  - id: "RC-002"
+    description: "Source-of-truth boundaries and precedence are explicit."
+  - id: "RC-003"
+    description: "Evidence requirements distinguish facts, assumptions, open questions, and deferred claims."
+  - id: "RC-004"
+    description: "Non-goals and forbidden surface preserve all Phase 1 contract prohibitions."
+  - id: "RC-005"
+    description: "Open questions identify what must be resolved before architecture or implementation can be designed."
