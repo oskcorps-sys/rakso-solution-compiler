@@ -51,7 +51,7 @@ evidence_requirements:
     - "Forbidden implementation surface is preserved."
 
 assumptions:
-  - "Phase 0 is completed and Phase 1 is in IMPLEMENTING."
+  - "Phase 0 is completed and Phase 1 is governed by the current STATE_SNAPSHOT.yaml lifecycle state."
   - "PHASE_1_CONTRACT.yaml is COMMITTED and authorizes this discovery artifact."
   - "Existing docs and SDD+ artifacts are sufficient to define an initial problem boundary."
   - "Later architecture or implementation phases may revise discovery findings through authorized SDD+ gates."
