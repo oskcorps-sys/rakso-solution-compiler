@@ -3,10 +3,102 @@ contract_id: contract-phase-1-v1
 created_at: '2026-06-18T20:26:15.268383+00:00'
 status: DRAFT
 specification:
-  title: Phase 1 — [TITLE]
-  description: 'TODO: describe this phase'
-  success_criteria: []
-acceptance_tests: []
+  title: "Phase 1 - Discovery and Problem Definition"
+  description: "Define the discovery/problem-definition contract for RAKSO Solution Compiler without designing or implementing the solution."
+  purpose: "Establish the problem boundary, source-of-truth rules, evidence requirements, non-goals, and readiness criteria needed before any architecture or implementation phase."
+  scope:
+    included:
+      - "Define the business problem RAKSO Solution Compiler is allowed to address."
+      - "Define source-of-truth boundaries for doctrine, roadmap, critical lens, and SDD+ governance artifacts."
+      - "Define evidence requirements for claims about business pain, value, users, workflows, and constraints."
+      - "Define non-goals and forbidden implementation surface for Phase 1."
+      - "Define readiness acceptance tests for later review."
+    excluded:
+      - "Product implementation code"
+      - "Product schemas"
+      - "Modules"
+      - "Runtime integrations"
+      - "Automation workflows"
+      - "Solution architecture"
+      - "Agent or AI system behavior design"
+  success_criteria:
+    - "Problem definition is explicit, bounded, and traceable to source materials."
+    - "Source-of-truth hierarchy is documented for Phase 1 decisions."
+    - "Evidence requirements distinguish facts, assumptions, open questions, and deferred claims."
+    - "Non-goals prevent architecture, module, schema, integration, workflow, and product artifact creation."
+    - "Readiness tests define what must be true before Phase 1 can advance."
+inputs:
+  state_snapshot:
+    type: "dict"
+    required: true
+    description: "Current SDD+ lifecycle state for the repository."
+    example: {"current_phase": 1, "current_state": "DRAFT"}
+    constraints: "Must validate against StateSnapshotSchema and remain Phase 1 / DRAFT during this contract refinement."
+  phase_0_contract:
+    type: "dict"
+    required: true
+    description: "Committed Phase 0 governance contract establishing that no product implementation was authorized."
+    example: {"phase": 0, "status": "COMMITTED"}
+    constraints: "Must remain committed and completed before Phase 1 discovery work is refined."
+  source_materials:
+    type: "list"
+    required: true
+    description: "Existing doctrine, blueprint, roadmap, critical lens, integration notes, and SDD+ artifacts used as source material."
+    example: ["docs/00_DOCTRINE.md", "docs/01_BLUEPRINT.md", "docs/02_ROADMAP.md", "docs/03_CRITICAL_LENS.md", "docs/04_SDD_PLUS_INTEGRATION.md"]
+    constraints: "Read-only inputs; Phase 1 refinement must not modify source documents."
+outputs:
+  problem_definition_contract:
+    type: "dict"
+    description: "A refined Phase 1 contract that binds discovery/problem-definition work before architecture or implementation."
+    example: {"contract_id": "contract-phase-1-v1", "status": "DRAFT"}
+    schema_ref: "/workspace/sdd-plus/sdd/schemas/contract.py"
+    validation_rule: "Must validate against ContractSchema."
+  readiness_criteria:
+    type: "list"
+    description: "Acceptance tests that indicate whether Phase 1 is ready for review."
+    example: ["test_problem_definition_is_bounded", "test_no_implementation_surface_created"]
+    validation_rule: "Each item must be represented by an acceptance test in this contract."
+constraints:
+  - "Do not create product implementation code in Phase 1 discovery."
+  - "Do not create product schemas, modules, runtime integrations, automation workflows, or product artifacts."
+  - "Do not design solution architecture in this phase."
+  - "Do not design agent behavior, AI system behavior, prompts, tools, or runtime orchestration in this phase."
+  - "Do not promote assumptions to facts without evidence."
+  - "Do not transition lifecycle state as part of this contract refinement."
+  - "Do not self-approve this contract."
+assumptions:
+  - "Phase 0 is completed and listed in completed_phases."
+  - "The current lifecycle state is Phase 1 / DRAFT."
+  - "Phase 1 is a discovery/problem-definition phase, not a build phase."
+  - "Existing repository documents and SDD+ artifacts are source material, not product implementation."
+acceptance_tests:
+  - name: "test_phase_1_contract_validates"
+    given: "PHASE_1_CONTRACT.yaml exists under sdd/artifacts."
+    when: "The artifact is loaded with /workspace/sdd-plus ContractSchema."
+    then: "Validation succeeds and status remains DRAFT."
+  - name: "test_phase_1_state_remains_draft"
+    given: "STATE_SNAPSHOT.yaml exists under sdd/artifacts."
+    when: "The artifact is loaded with /workspace/sdd-plus StateSnapshotSchema."
+    then: "current_phase is 1, current_state is DRAFT, and completed_phases includes 0."
+  - name: "test_problem_definition_scope_is_bounded"
+    given: "The Phase 1 contract specification is reviewed."
+    when: "Problem definition, source-of-truth boundaries, evidence requirements, and non-goals are inspected."
+    then: "The contract defines discovery readiness without solution architecture or implementation commitments."
+  - name: "test_evidence_requirements_prevent_unsupported_claims"
+    given: "A Phase 1 claim about pain, value, users, workflows, or constraints is proposed."
+    when: "The claim is checked against the contract."
+    then: "The claim is classified as evidence-backed, assumption, open question, or deferred."
+  - name: "test_forbidden_implementation_surface_absent"
+    given: "The repository is scanned after Phase 1 contract refinement."
+    when: "Files and contract scope are inspected."
+    then: "No product implementation code, schemas, modules, runtime integrations, automation workflows, or product artifacts exist or are authorized."
+defer_to_next_phase:
+  - "Solution architecture is deferred until a later authorized phase."
+  - "Product schemas are deferred until a later authorized phase."
+  - "Modules are deferred until a later authorized phase."
+  - "Runtime integrations are deferred until a later authorized phase."
+  - "Automation workflows are deferred until a later authorized phase."
+  - "Agent or AI system behavior design is deferred until a later authorized phase."
 files_to_create: []
 files_to_modify: []
 scope_is_locked: false
