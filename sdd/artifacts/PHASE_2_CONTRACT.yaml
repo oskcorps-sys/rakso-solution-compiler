@@ -44,8 +44,8 @@ inputs:
     type: "dict"
     required: true
     description: "Current SDD+ lifecycle state for the repository."
-    example: {"current_phase": 2, "current_state": "DRAFT"}
-    constraints: "Must validate against StateSnapshotSchema and remain Phase 2 / DRAFT during this contract refinement."
+    example: {"current_phase": 2, "current_state": "REFINED"}
+    constraints: "Must validate against StateSnapshotSchema and remain Phase 2 / REFINED during this LOCKED-gate readiness review."
   phase_1_contract:
     type: "dict"
     required: true
@@ -86,7 +86,7 @@ constraints:
   - "Do not self-approve this contract."
 assumptions:
   - "Phase 0 and Phase 1 are completed and listed in completed_phases."
-  - "The current lifecycle state is Phase 2 / DRAFT."
+  - "The current lifecycle state is Phase 2 / REFINED."
   - "Phase 1 discovery is sufficient to define an initial solution boundary but not sufficient to authorize implementation."
   - "Existing repository documents and SDD+ artifacts are source material, not product implementation."
 acceptance_tests:
@@ -94,10 +94,10 @@ acceptance_tests:
     given: "PHASE_2_CONTRACT.yaml exists under sdd/artifacts."
     when: "The artifact is loaded with /workspace/sdd-plus ContractSchema."
     then: "Validation succeeds and status remains DRAFT."
-  - name: "test_phase_2_state_remains_draft"
+  - name: "test_phase_2_state_remains_refined"
     given: "STATE_SNAPSHOT.yaml exists under sdd/artifacts."
     when: "The artifact is loaded with /workspace/sdd-plus StateSnapshotSchema."
-    then: "current_phase is 2, current_state is DRAFT, and completed_phases includes 0 and 1."
+    then: "current_phase is 2, current_state is REFINED, and completed_phases includes 0 and 1."
   - name: "test_solution_boundary_is_evidence_backed"
     given: "A Phase 2 scope inclusion or exclusion is proposed."
     when: "The decision is checked against Phase 1 discovery and source materials."
