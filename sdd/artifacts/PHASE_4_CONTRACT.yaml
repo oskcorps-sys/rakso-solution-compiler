@@ -3,10 +3,133 @@ contract_id: contract-phase-4-v1
 created_at: '2026-06-23T20:36:53.658980+00:00'
 status: DRAFT
 specification:
-  title: Phase 4 — [TITLE]
-  description: 'TODO: describe this phase'
-  success_criteria: []
-acceptance_tests: []
+  title: "Phase 4 - Minimal Architecture Authorization"
+  description: "Authorize a bounded, governance-only architecture-design artifact for RAKSO Solution Compiler without authorizing product implementation, schemas, modules, runtime integrations, workflows, prompts, tools, agents, AI behavior, or runtime orchestration."
+  purpose: "Convert the completed Phase 3 architecture-readiness artifact into a minimal architecture authorization boundary that may define high-level architecture decisions and component-boundary framing while preserving all product-build prohibitions."
+  scope:
+    included:
+      - "Define which minimal architecture decisions are allowed."
+      - "Define which architecture decisions remain forbidden or deferred."
+      - "Define source-of-truth precedence for architecture decisions."
+      - "Permit minimal component-boundary framing only as governance architecture, not implementation modules."
+      - "Define readiness criteria for later implementation planning authorization."
+    excluded:
+      - "Product implementation code"
+      - "Product schemas"
+      - "Executable modules"
+      - "Runtime integrations"
+      - "Automation workflows"
+      - "Product artifacts"
+      - "Prompts, tools, agents, or AI system behavior design"
+      - "Runtime orchestration"
+      - "Product build authorization"
+  architecture_authorization:
+    allowed_surface:
+      - "Governance-only minimal architecture authorization."
+      - "High-level architecture decisions traceable to Phase 3 readiness evidence."
+      - "Component-boundary framing that names responsibilities without defining modules, schemas, APIs, runtime behavior, or implementation details."
+      - "Source-of-truth precedence for future architecture and implementation-planning review."
+      - "Readiness criteria for deciding whether a later committed contract may authorize implementation planning."
+    forbidden_surface:
+      - "No product implementation code may be created."
+      - "No product schemas, executable modules, runtime integrations, automation workflows, or product artifacts may be created."
+      - "No prompts, tools, agents, AI system behavior, or runtime orchestration may be designed."
+      - "No implementation plan or product build may be authorized unless a later committed contract explicitly permits it."
+  success_criteria:
+    - "Allowed architecture decisions are minimal, explicit, and traceable to Phase 3 readiness evidence."
+    - "Component-boundary framing remains conceptual and does not define modules, schemas, APIs, runtime behavior, workflows, prompts, tools, agents, or implementation details."
+    - "Forbidden implementation and AI-system surfaces remain excluded."
+    - "Source-of-truth precedence is explicit for conflicts between SDD+ artifacts and repository source documents."
+    - "Acceptance tests use STATE_SNAPSHOT.yaml as the lifecycle source of truth and do not hardcode a specific current_state."
+inputs:
+  state_snapshot:
+    type: "dict"
+    required: true
+    description: "Current SDD+ lifecycle state for the repository."
+    example: {"current_phase": 4, "current_state": "ACTIVE_GATE_STATE"}
+    constraints: "Must validate against StateSnapshotSchema. STATE_SNAPSHOT.yaml is the source of truth for the current lifecycle state. The artifact must remain current_phase 4, completed_phases must include 0, 1, 2, and 3, and current_state must be valid for the active SDD+ gate under review."
+  phase_3_contract:
+    type: "dict"
+    required: true
+    description: "Committed Phase 3 architecture-readiness contract."
+    example: {"phase": 3, "status": "COMMITTED"}
+    constraints: "Must remain committed and must not authorize product implementation."
+  phase_3_readiness:
+    type: "dict"
+    required: true
+    description: "Completed Phase 3 architecture-readiness artifact used as the primary source for minimal architecture authorization."
+    example: {"phase": 3, "title": "Phase 3 - Architecture Readiness"}
+    constraints: "Must be read-only source material and must not be expanded into product implementation, schemas, modules, integrations, workflows, prompts, tools, agents, AI behavior, or runtime orchestration."
+  phase_3_handoff:
+    type: "dict"
+    required: false
+    description: "Phase 3 to Phase 4 handoff context."
+    example: {"path": "sdd/handoffs/PHASE_3_TO_4.md"}
+    constraints: "Read-only handoff context; TODO placeholders do not authorize scope expansion."
+outputs:
+  minimal_architecture_contract:
+    type: "dict"
+    description: "A refined Phase 4 contract that binds minimal architecture authorization before any implementation planning or product build."
+    example: {"contract_id": "contract-phase-4-v1", "status": "DRAFT"}
+    schema_ref: "/workspace/sdd-plus/sdd/schemas/contract.py"
+    validation_rule: "Must validate against ContractSchema."
+  gate_readiness_tests:
+    type: "list"
+    description: "Acceptance tests that indicate whether Phase 4 is ready for later SDD+ gates without authorizing product build."
+    example: ["test_minimal_architecture_decisions_are_traceable", "test_product_build_surface_absent"]
+    validation_rule: "Each item must be represented by an acceptance test in this contract."
+constraints:
+  - "Do not create product implementation code in Phase 4."
+  - "Do not create product schemas, executable modules, runtime integrations, automation workflows, or product artifacts."
+  - "Do not design prompts, tools, agents, AI system behavior, or runtime orchestration."
+  - "Do not define executable interfaces, APIs, data models, infrastructure, deployment behavior, or workflow automation."
+  - "Do not authorize product build or implementation planning unless a later committed contract explicitly permits it."
+  - "Keep architecture decisions minimal and traceable to Phase 3 readiness evidence."
+  - "Do not transition lifecycle state as part of this contract refinement."
+  - "Do not self-approve this contract."
+assumptions:
+  - "Phases 0, 1, 2, and 3 are completed and listed in completed_phases."
+  - "The current lifecycle state is governed by STATE_SNAPSHOT.yaml."
+  - "Phase 3 readiness evidence is sufficient to authorize minimal architecture framing but not sufficient to authorize product implementation."
+  - "Existing repository documents and SDD+ artifacts are source material, not product implementation."
+acceptance_tests:
+  - name: "test_phase_4_contract_validates"
+    given: "PHASE_4_CONTRACT.yaml exists under sdd/artifacts."
+    when: "The artifact is loaded with /workspace/sdd-plus ContractSchema."
+    then: "Validation succeeds and status remains DRAFT until an authorized contract status update occurs."
+  - name: "test_phase_4_state_matches_active_gate"
+    given: "STATE_SNAPSHOT.yaml exists under sdd/artifacts."
+    when: "The artifact is loaded with /workspace/sdd-plus StateSnapshotSchema."
+    then: "current_phase is 4, completed_phases includes 0, 1, 2, and 3, and current_state matches the active SDD+ lifecycle gate under review."
+  - name: "test_minimal_architecture_decisions_are_traceable"
+    given: "A minimal architecture decision is proposed."
+    when: "The decision is checked against Phase 3 readiness evidence."
+    then: "The decision is traceable to Phase 3 evidence and remains within governance-only architecture authorization."
+  - name: "test_component_boundaries_are_non_executable"
+    given: "A component boundary is framed."
+    when: "The boundary is reviewed under Phase 4 scope."
+    then: "The boundary names responsibilities only and does not define modules, schemas, APIs, runtime behavior, workflows, prompts, tools, agents, or implementation details."
+  - name: "test_source_of_truth_precedence_is_explicit"
+    given: "Phase 3 artifacts, SDD+ state, handoffs, and repository source documents are reviewed."
+    when: "A conflict appears between source materials."
+    then: "Committed SDD+ artifacts govern allowed work, Phase 3 readiness governs architecture evidence, and unresolved conflicts remain open questions."
+  - name: "test_product_build_surface_absent"
+    given: "The repository is scanned after Phase 4 contract refinement."
+    when: "Files and contract scope are inspected."
+    then: "No product implementation code, schemas, executable modules, runtime integrations, automation workflows, product artifacts, prompts, tools, agents, AI behavior, runtime orchestration, implementation plan, or product build authorization exists."
+  - name: "test_lifecycle_wording_is_neutral"
+    given: "The Phase 4 contract is reviewed across lifecycle gates."
+    when: "State wording is inspected."
+    then: "STATE_SNAPSHOT.yaml remains the lifecycle source of truth and no acceptance test hardcodes a specific current_state value."
+defer_to_next_phase:
+  - "Product implementation code is deferred until a later committed contract explicitly authorizes it."
+  - "Product schemas are deferred until a later committed contract explicitly authorizes them."
+  - "Executable modules are deferred until a later committed contract explicitly authorizes them."
+  - "Runtime integrations are deferred until a later committed contract explicitly authorizes them."
+  - "Automation workflows are deferred until a later committed contract explicitly authorizes them."
+  - "Product artifacts are deferred until a later committed contract explicitly authorizes them."
+  - "Prompts, tools, agents, AI system behavior, and runtime orchestration are deferred until a later committed contract explicitly authorizes them."
+  - "Implementation planning and product build authorization are deferred until a later committed contract explicitly authorizes them."
 files_to_create: []
 files_to_modify: []
 scope_is_locked: false
