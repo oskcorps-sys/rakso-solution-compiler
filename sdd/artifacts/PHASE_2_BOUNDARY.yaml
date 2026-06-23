@@ -1,0 +1,121 @@
+phase: 2
+title: "Phase 2 - Solution Boundary Definition"
+description: "Governance-only solution-boundary artifact for RAKSO Solution Compiler, derived from Phase 1 discovery and bounded by the committed Phase 2 contract."
+
+source_inputs:
+  state_snapshot: "sdd/artifacts/STATE_SNAPSHOT.yaml"
+  phase_2_contract: "sdd/artifacts/PHASE_2_CONTRACT.yaml"
+  phase_1_contract: "sdd/artifacts/PHASE_1_CONTRACT.yaml"
+  phase_1_discovery: "sdd/artifacts/PHASE_1_DISCOVERY.yaml"
+  doctrine: "docs/00_DOCTRINE.md"
+  blueprint: "docs/01_BLUEPRINT.md"
+  roadmap: "docs/02_ROADMAP.md"
+  critical_lens: "docs/03_CRITICAL_LENS.md"
+  integration_notes: "docs/04_SDD_PLUS_INTEGRATION.md"
+  precedence:
+    - "Committed SDD+ artifacts define allowed work."
+    - "Phase 1 discovery defines the evidence boundary for problem and scope claims."
+    - "Repository documents provide source material but do not authorize implementation."
+    - "Conflicts remain open questions unless resolved by an authorized SDD+ gate."
+
+solution_boundary:
+  summary: "RAKSO Solution Compiler is bounded to converting evidence-backed business chaos into clearly scoped, sellable solution definitions before any product implementation, architecture, schema, integration, workflow, or agent behavior is designed."
+  included_problem_space:
+    - "Clarify the business situations the future compiler may address."
+    - "Separate evidence-backed scope from assumptions, open questions, and deferred claims."
+    - "Define what later phases must know before considering architecture or implementation."
+    - "Preserve a source-of-truth hierarchy for scope decisions."
+  excluded_problem_space:
+    - "Any claim that requires product implementation to validate."
+    - "Any claim that requires product schemas, modules, integrations, workflows, or product artifacts."
+    - "Any claim that defines prompts, tools, agents, AI system behavior, runtime orchestration, or solution architecture."
+
+allowed_scope:
+  - "Governance-only solution-boundary definitions."
+  - "Evidence-backed scope decisions derived from Phase 1 discovery."
+  - "Classification of scope claims as evidence-backed facts, assumptions, open questions, or deferred claims."
+  - "Explicit deferrals for implementation, architecture, schemas, modules, runtime integrations, workflows, product artifacts, prompts, tools, agents, and AI behavior."
+  - "Readiness criteria for later review of whether the boundary can advance."
+
+forbidden_surface:
+  product_implementation_code: "forbidden"
+  product_schemas: "forbidden"
+  modules: "forbidden"
+  runtime_integrations: "forbidden"
+  automation_workflows: "forbidden"
+  product_artifacts: "forbidden"
+  solution_architecture: "forbidden"
+  prompts: "forbidden"
+  tools: "forbidden"
+  agents: "forbidden"
+  ai_system_behavior: "forbidden"
+  runtime_orchestration: "forbidden"
+
+evidence_classification_rules:
+  evidence_backed_fact:
+    rule: "A claim is evidence-backed only when traceable to Phase 1 discovery or listed source materials."
+  assumption:
+    rule: "A claim is an assumption when plausible but not directly established by source material."
+  open_question:
+    rule: "A claim is an open question when it identifies missing knowledge required before later design or implementation."
+  deferred_claim:
+    rule: "A claim is deferred when resolving it would require architecture, implementation, schemas, modules, integrations, workflows, prompts, tools, agents, or AI behavior."
+
+scope_decisions:
+  - id: "SD-001"
+    decision: "The future compiler may address evidence-backed business chaos and solution-definition problems."
+    classification: "evidence_backed_fact"
+    evidence:
+      - "sdd/artifacts/PHASE_1_DISCOVERY.yaml problem_definition.summary"
+      - "sdd/artifacts/PHASE_1_DISCOVERY.yaml bounded_problem"
+  - id: "SD-002"
+    decision: "Phase 2 may define solution boundaries but must not define architecture or implementation."
+    classification: "evidence_backed_fact"
+    evidence:
+      - "sdd/artifacts/PHASE_2_CONTRACT.yaml specification.solution_boundary.allowed_surface"
+      - "sdd/artifacts/PHASE_2_CONTRACT.yaml constraints"
+  - id: "SD-003"
+    decision: "Business pain, value, user, workflow, and constraint claims require evidence classification before entering later scope."
+    classification: "evidence_backed_fact"
+    evidence:
+      - "sdd/artifacts/PHASE_1_DISCOVERY.yaml evidence_requirements"
+  - id: "SD-004"
+    decision: "Architecture, schemas, modules, integrations, workflows, product artifacts, prompts, tools, agents, and AI behavior are out of Phase 2 scope."
+    classification: "evidence_backed_fact"
+    evidence:
+      - "sdd/artifacts/PHASE_2_CONTRACT.yaml forbidden_surface"
+      - "sdd/artifacts/PHASE_2_CONTRACT.yaml defer_to_next_phase"
+  - id: "SD-005"
+    decision: "Specific first-class input situations for the future compiler remain unresolved."
+    classification: "open_question"
+    evidence:
+      - "sdd/artifacts/PHASE_1_DISCOVERY.yaml open_questions"
+
+open_questions:
+  - "Which business situations are first-class inputs for the future compiler?"
+  - "What evidence threshold is required before a business pain can be treated as actionable?"
+  - "Which source documents dominate when doctrine, roadmap, and integration notes use different framing?"
+  - "What must remain manual in the first usable version to preserve clarity before automation?"
+  - "What review evidence is required before later phases may define architecture or agent behavior?"
+
+deferrals:
+  - "Product implementation code is deferred until a later committed contract explicitly authorizes it."
+  - "Product schemas are deferred until a later committed contract explicitly authorizes them."
+  - "Modules are deferred until a later committed contract explicitly authorizes them."
+  - "Runtime integrations are deferred until a later committed contract explicitly authorizes them."
+  - "Automation workflows are deferred until a later committed contract explicitly authorizes them."
+  - "Product artifacts are deferred until a later committed contract explicitly authorizes them."
+  - "Solution architecture is deferred until a later committed contract explicitly authorizes it."
+  - "Prompts, tools, agents, AI system behavior, and runtime orchestration are deferred until a later committed contract explicitly authorizes them."
+
+readiness_criteria:
+  - id: "RC-001"
+    description: "Solution boundary is explicit and traceable to Phase 1 discovery."
+  - id: "RC-002"
+    description: "Allowed scope is separated from forbidden implementation surface."
+  - id: "RC-003"
+    description: "Scope decisions are classified as evidence-backed facts, assumptions, open questions, or deferred claims."
+  - id: "RC-004"
+    description: "Source-of-truth precedence is documented for conflicts between governance artifacts and source documents."
+  - id: "RC-005"
+    description: "All implementation, architecture, schema, module, integration, workflow, product artifact, prompt, tool, agent, AI behavior, and orchestration concerns remain deferred."
