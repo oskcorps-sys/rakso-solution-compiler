@@ -131,6 +131,7 @@ defer_to_next_phase:
   - "Product artifacts are deferred until a later committed contract explicitly authorizes them."
   - "Solution architecture design is deferred until a later committed contract explicitly authorizes it."
   - "Prompts, tools, agents, AI system behavior, and runtime orchestration are deferred until a later committed contract explicitly authorizes them."
-files_to_create: []
+files_to_create:
+- sdd/artifacts/PHASE_3_READINESS.yaml
 files_to_modify: []
 scope_is_locked: false
