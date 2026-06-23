@@ -44,8 +44,8 @@ inputs:
     type: "dict"
     required: true
     description: "Current SDD+ lifecycle state for the repository."
-    example: {"current_phase": 2, "current_state": "LOCKED"}
-    constraints: "Must validate against StateSnapshotSchema and remain Phase 2 / LOCKED during this DRAFT-to-COMMITTED readiness review."
+    example: {"current_phase": 2, "current_state": "ACTIVE_GATE_STATE"}
+    constraints: "Must validate against StateSnapshotSchema. STATE_SNAPSHOT.yaml is the source of truth for the current lifecycle state. The artifact must remain current_phase 2, completed_phases must include 0 and 1, and current_state must be valid for the active SDD+ gate under review."
   phase_1_contract:
     type: "dict"
     required: true
@@ -86,18 +86,18 @@ constraints:
   - "Do not self-approve this contract."
 assumptions:
   - "Phase 0 and Phase 1 are completed and listed in completed_phases."
-  - "The current lifecycle state is Phase 2 / LOCKED."
+  - "The current lifecycle state is governed by STATE_SNAPSHOT.yaml."
   - "Phase 1 discovery is sufficient to define an initial solution boundary but not sufficient to authorize implementation."
   - "Existing repository documents and SDD+ artifacts are source material, not product implementation."
 acceptance_tests:
   - name: "test_phase_2_contract_validates"
     given: "PHASE_2_CONTRACT.yaml exists under sdd/artifacts."
     when: "The artifact is loaded with /workspace/sdd-plus ContractSchema."
-    then: "Validation succeeds and status remains DRAFT."
-  - name: "test_phase_2_state_remains_locked"
+    then: "Validation succeeds and status remains COMMITTED."
+  - name: "test_phase_2_state_matches_active_gate"
     given: "STATE_SNAPSHOT.yaml exists under sdd/artifacts."
     when: "The artifact is loaded with /workspace/sdd-plus StateSnapshotSchema."
-    then: "current_phase is 2, current_state is LOCKED, and completed_phases includes 0 and 1."
+    then: "current_phase is 2, completed_phases includes 0 and 1, and current_state matches the active SDD+ lifecycle gate under review."
   - name: "test_solution_boundary_is_evidence_backed"
     given: "A Phase 2 scope inclusion or exclusion is proposed."
     when: "The decision is checked against Phase 1 discovery and source materials."
@@ -122,6 +122,7 @@ defer_to_next_phase:
   - "Automation workflows are deferred until a later committed contract explicitly authorizes them."
   - "Product artifacts are deferred until a later committed contract explicitly authorizes them."
   - "Prompts, tools, agents, AI system behavior, and runtime orchestration are deferred until a later committed contract explicitly authorizes them."
-files_to_create: []
+files_to_create:
+  - "sdd/artifacts/PHASE_2_BOUNDARY.yaml"
 files_to_modify: []
 scope_is_locked: false
