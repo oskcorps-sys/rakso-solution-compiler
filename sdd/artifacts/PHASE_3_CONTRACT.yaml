@@ -97,7 +97,7 @@ acceptance_tests:
   - name: "test_phase_3_contract_validates"
     given: "PHASE_3_CONTRACT.yaml exists under sdd/artifacts."
     when: "The artifact is loaded with /workspace/sdd-plus ContractSchema."
-    then: "Validation succeeds and status remains DRAFT until an authorized contract status update occurs."
+    then: "Validation succeeds and status remains COMMITTED after the authorized contract status update."
   - name: "test_phase_3_state_matches_active_gate"
     given: "STATE_SNAPSHOT.yaml exists under sdd/artifacts."
     when: "The artifact is loaded with /workspace/sdd-plus StateSnapshotSchema."
