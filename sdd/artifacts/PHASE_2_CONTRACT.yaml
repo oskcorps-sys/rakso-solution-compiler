@@ -3,10 +3,125 @@ contract_id: contract-phase-2-v1
 created_at: '2026-06-23T15:09:58.785166+00:00'
 status: DRAFT
 specification:
-  title: Phase 2 — [TITLE]
-  description: 'TODO: describe this phase'
-  success_criteria: []
-acceptance_tests: []
+  title: "Phase 2 - Solution Boundary Definition"
+  description: "Convert the completed Phase 1 discovery/problem-definition artifact into a bounded solution-scope contract without authorizing product implementation."
+  purpose: "Define what RAKSO Solution Compiler is allowed to solve, what remains outside scope, and what evidence is required before later phases may design architecture or implementation."
+  scope:
+    included:
+      - "Translate Phase 1 discovery findings into solution-boundary decisions."
+      - "Define allowed and forbidden implementation surface for Phase 2."
+      - "Establish source-of-truth precedence for scope decisions."
+      - "Require evidence-backed classification for scope inclusions, exclusions, assumptions, and deferrals."
+      - "Define acceptance tests for later LOCKED readiness review."
+    excluded:
+      - "Product implementation code"
+      - "Product schemas"
+      - "Modules"
+      - "Runtime integrations"
+      - "Automation workflows"
+      - "Product artifacts"
+      - "Prompts, tools, agents, or AI system behavior design"
+      - "Runtime orchestration"
+  solution_boundary:
+    allowed_surface:
+      - "Governance-only solution boundary definitions."
+      - "Evidence-backed scope decisions derived from Phase 1 discovery."
+      - "Explicit deferrals for implementation, architecture, schema, module, integration, workflow, and agent behavior concerns."
+      - "Readiness criteria for deciding whether the boundary can be locked."
+    forbidden_surface:
+      - "No product implementation code may be created."
+      - "No product schemas, modules, runtime integrations, automation workflows, or product artifacts may be created."
+      - "No prompts, tools, agents, AI system behavior, or runtime orchestration may be designed."
+      - "No architecture design may be produced unless separately authorized by a later committed contract."
+  success_criteria:
+    - "Solution boundary is explicit and traceable to Phase 1 discovery."
+    - "Allowed scope is separated from forbidden implementation surface."
+    - "Each scope decision is evidence-backed, assumed, open, or deferred."
+    - "Source-of-truth precedence is documented for conflicts between governance artifacts and source documents."
+    - "Acceptance tests define what must be true before Phase 2 can advance toward LOCKED."
+inputs:
+  state_snapshot:
+    type: "dict"
+    required: true
+    description: "Current SDD+ lifecycle state for the repository."
+    example: {"current_phase": 2, "current_state": "DRAFT"}
+    constraints: "Must validate against StateSnapshotSchema and remain Phase 2 / DRAFT during this contract refinement."
+  phase_1_contract:
+    type: "dict"
+    required: true
+    description: "Committed Phase 1 discovery/problem-definition contract."
+    example: {"phase": 1, "status": "COMMITTED"}
+    constraints: "Must remain committed and must not authorize product implementation."
+  phase_1_discovery:
+    type: "dict"
+    required: true
+    description: "Completed Phase 1 discovery artifact used as the primary input for solution-boundary decisions."
+    example: {"phase": 1, "title": "Phase 1 - Discovery and Problem Definition"}
+    constraints: "Must be read-only source material and must not be expanded into architecture or implementation design."
+  source_materials:
+    type: "list"
+    required: true
+    description: "Doctrine, blueprint, roadmap, critical lens, integration notes, and SDD+ artifacts used for scope evidence."
+    example: ["docs/00_DOCTRINE.md", "docs/01_BLUEPRINT.md", "docs/02_ROADMAP.md", "docs/03_CRITICAL_LENS.md", "docs/04_SDD_PLUS_INTEGRATION.md"]
+    constraints: "Read-only inputs; Phase 2 refinement must not modify source documents."
+outputs:
+  solution_boundary_contract:
+    type: "dict"
+    description: "A refined Phase 2 contract that binds solution-boundary work before later architecture or implementation phases."
+    example: {"contract_id": "contract-phase-2-v1", "status": "DRAFT"}
+    schema_ref: "/workspace/sdd-plus/sdd/schemas/contract.py"
+    validation_rule: "Must validate against ContractSchema."
+  lock_readiness_tests:
+    type: "list"
+    description: "Acceptance tests that indicate whether Phase 2 is ready for the LOCKED gate."
+    example: ["test_solution_boundary_is_evidence_backed", "test_forbidden_surface_remains_absent"]
+    validation_rule: "Each item must be represented by an acceptance test in this contract."
+constraints:
+  - "Do not create product implementation code in Phase 2."
+  - "Do not create product schemas, modules, runtime integrations, automation workflows, or product artifacts."
+  - "Do not design prompts, tools, agents, AI system behavior, or runtime orchestration."
+  - "Do not design solution architecture unless separately authorized by a later committed contract."
+  - "Do not promote assumptions or desired automation into solution scope without evidence."
+  - "Do not transition lifecycle state as part of this contract refinement."
+  - "Do not self-approve this contract."
+assumptions:
+  - "Phase 0 and Phase 1 are completed and listed in completed_phases."
+  - "The current lifecycle state is Phase 2 / DRAFT."
+  - "Phase 1 discovery is sufficient to define an initial solution boundary but not sufficient to authorize implementation."
+  - "Existing repository documents and SDD+ artifacts are source material, not product implementation."
+acceptance_tests:
+  - name: "test_phase_2_contract_validates"
+    given: "PHASE_2_CONTRACT.yaml exists under sdd/artifacts."
+    when: "The artifact is loaded with /workspace/sdd-plus ContractSchema."
+    then: "Validation succeeds and status remains DRAFT."
+  - name: "test_phase_2_state_remains_draft"
+    given: "STATE_SNAPSHOT.yaml exists under sdd/artifacts."
+    when: "The artifact is loaded with /workspace/sdd-plus StateSnapshotSchema."
+    then: "current_phase is 2, current_state is DRAFT, and completed_phases includes 0 and 1."
+  - name: "test_solution_boundary_is_evidence_backed"
+    given: "A Phase 2 scope inclusion or exclusion is proposed."
+    when: "The decision is checked against Phase 1 discovery and source materials."
+    then: "The decision is classified as evidence-backed, assumption, open question, or deferred."
+  - name: "test_source_of_truth_precedence_is_explicit"
+    given: "Phase 1 discovery, SDD+ artifacts, and repository documents are reviewed."
+    when: "A conflict appears between source materials."
+    then: "Committed SDD+ artifacts govern allowed work, Phase 1 discovery governs problem evidence, and unresolved conflicts remain open questions."
+  - name: "test_forbidden_implementation_surface_absent"
+    given: "The repository is scanned after Phase 2 contract refinement."
+    when: "Files and contract scope are inspected."
+    then: "No product implementation code, schemas, modules, runtime integrations, automation workflows, product artifacts, prompts, tools, agents, or AI behavior design exist or are authorized."
+  - name: "test_lock_readiness_defined"
+    given: "The refined Phase 2 contract is reviewed for the LOCKED gate."
+    when: "Solution boundary, allowed surface, forbidden surface, evidence requirements, and source precedence are inspected."
+    then: "The contract defines enough governance criteria to review whether Phase 2 may advance toward LOCKED without authorizing implementation."
+defer_to_next_phase:
+  - "Product implementation code is deferred until a later committed contract explicitly authorizes it."
+  - "Product schemas are deferred until a later committed contract explicitly authorizes them."
+  - "Modules are deferred until a later committed contract explicitly authorizes them."
+  - "Runtime integrations are deferred until a later committed contract explicitly authorizes them."
+  - "Automation workflows are deferred until a later committed contract explicitly authorizes them."
+  - "Product artifacts are deferred until a later committed contract explicitly authorizes them."
+  - "Prompts, tools, agents, AI system behavior, and runtime orchestration are deferred until a later committed contract explicitly authorizes them."
 files_to_create: []
 files_to_modify: []
 scope_is_locked: false
