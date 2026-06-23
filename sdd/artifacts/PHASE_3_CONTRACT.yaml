@@ -1,7 +1,7 @@
 phase: 3
 contract_id: contract-phase-3-v1
 created_at: '2026-06-23T17:29:50.712204+00:00'
-status: DRAFT
+status: COMMITTED
 specification:
   title: "Phase 3 - Architecture Readiness Definition"
   description: "Define the governance-only readiness boundary for later architecture authorization without designing architecture, implementation, schemas, modules, integrations, workflows, prompts, tools, agents, or AI behavior."
