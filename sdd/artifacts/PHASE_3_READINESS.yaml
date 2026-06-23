@@ -1,0 +1,150 @@
+phase: 3
+title: "Phase 3 - Architecture Readiness"
+description: "Governance-only architecture-readiness artifact for RAKSO Solution Compiler, bounded by the committed Phase 3 contract and derived from Phase 2 solution-boundary evidence."
+
+source_inputs:
+  state_snapshot: "sdd/artifacts/STATE_SNAPSHOT.yaml"
+  phase_3_contract: "sdd/artifacts/PHASE_3_CONTRACT.yaml"
+  phase_2_contract: "sdd/artifacts/PHASE_2_CONTRACT.yaml"
+  phase_2_boundary: "sdd/artifacts/PHASE_2_BOUNDARY.yaml"
+  phase_2_to_3_handoff: "sdd/handoffs/PHASE_2_TO_3.md"
+  precedence:
+    - "The committed Phase 3 contract defines allowed work."
+    - "STATE_SNAPSHOT.yaml defines the active lifecycle state."
+    - "Phase 2 boundary decisions define the solution-scope evidence base."
+    - "Phase 2 handoff notes are contextual only and do not authorize scope expansion."
+    - "Conflicts remain open questions until resolved by an authorized SDD+ gate."
+
+architecture_readiness_boundary:
+  summary: "Phase 3 may define what must be known before architecture can be designed, but it must not define architecture itself."
+  allowed_surface:
+    - "Evidence requirements for later architecture authorization."
+    - "Architecture-readiness question framing."
+    - "Source-of-truth precedence for readiness review."
+    - "Readiness criteria for deciding whether a later contract may authorize architecture design."
+  excluded_surface:
+    - "Architecture decisions"
+    - "Component boundaries"
+    - "Data models or schemas"
+    - "Module definitions"
+    - "Integration design"
+    - "Workflow design"
+    - "Prompt, tool, agent, or AI behavior design"
+    - "Runtime orchestration"
+    - "Product implementation"
+
+allowed_questions:
+  - id: "AQ-001"
+    question: "What evidence must exist before architecture design can be authorized?"
+    permitted_handling: "Frame evidence requirements only; do not select architecture patterns or components."
+  - id: "AQ-002"
+    question: "Which Phase 2 scope decisions must be stable before later design work begins?"
+    permitted_handling: "Identify dependency on evidence-backed scope decisions; do not convert them into design."
+  - id: "AQ-003"
+    question: "Which unresolved Phase 2 open questions could block architecture authorization?"
+    permitted_handling: "List readiness blockers or open questions; do not resolve them through design choices."
+  - id: "AQ-004"
+    question: "What source-of-truth precedence should govern later architecture authorization?"
+    permitted_handling: "Define governance precedence only; do not create architecture documentation."
+  - id: "AQ-005"
+    question: "What must a future contract explicitly authorize before architecture design may begin?"
+    permitted_handling: "Define authorization criteria only; do not draft the architecture."
+
+forbidden_surface:
+  product_implementation_code: "forbidden"
+  product_schemas: "forbidden"
+  modules: "forbidden"
+  runtime_integrations: "forbidden"
+  automation_workflows: "forbidden"
+  product_artifacts: "forbidden"
+  solution_architecture_design: "forbidden"
+  architecture_decisions: "forbidden"
+  prompts: "forbidden"
+  tools: "forbidden"
+  agents: "forbidden"
+  ai_system_behavior: "forbidden"
+  runtime_orchestration: "forbidden"
+
+evidence_requirements:
+  - id: "ER-001"
+    requirement: "Architecture authorization must trace to completed Phase 2 boundary decisions."
+    evidence_sources:
+      - "sdd/artifacts/PHASE_2_BOUNDARY.yaml scope_decisions"
+      - "sdd/artifacts/PHASE_2_BOUNDARY.yaml readiness_criteria"
+  - id: "ER-002"
+    requirement: "Any future architecture candidate must first identify which business situation and evidence-backed scope decision it serves."
+    evidence_sources:
+      - "sdd/artifacts/PHASE_2_BOUNDARY.yaml solution_boundary"
+      - "sdd/artifacts/PHASE_2_BOUNDARY.yaml evidence_classification_rules"
+  - id: "ER-003"
+    requirement: "Open questions that affect architecture authorization must remain visible and unresolved until answered by authorized governance work."
+    evidence_sources:
+      - "sdd/artifacts/PHASE_2_BOUNDARY.yaml open_questions"
+  - id: "ER-004"
+    requirement: "Forbidden implementation and design surfaces must remain absent before architecture authorization."
+    evidence_sources:
+      - "sdd/artifacts/PHASE_3_CONTRACT.yaml constraints"
+      - "sdd/artifacts/PHASE_3_CONTRACT.yaml defer_to_next_phase"
+  - id: "ER-005"
+    requirement: "A later committed contract must explicitly authorize architecture design before any architecture artifact is created."
+    evidence_sources:
+      - "sdd/artifacts/PHASE_3_CONTRACT.yaml architecture_readiness.forbidden_surface"
+
+readiness_decisions:
+  - id: "RD-001"
+    decision: "Phase 3 may define architecture-readiness evidence, but must not design architecture."
+    classification: "evidence_backed_fact"
+    evidence:
+      - "sdd/artifacts/PHASE_3_CONTRACT.yaml specification.architecture_readiness.allowed_surface"
+      - "sdd/artifacts/PHASE_3_CONTRACT.yaml constraints"
+  - id: "RD-002"
+    decision: "Later architecture authorization requires traceability to Phase 2 boundary decisions."
+    classification: "evidence_backed_fact"
+    evidence:
+      - "sdd/artifacts/PHASE_2_BOUNDARY.yaml solution_boundary"
+      - "sdd/artifacts/PHASE_2_BOUNDARY.yaml scope_decisions"
+  - id: "RD-003"
+    decision: "Architecture design, product implementation, schemas, modules, integrations, workflows, prompts, tools, agents, AI behavior, and runtime orchestration remain deferred."
+    classification: "evidence_backed_fact"
+    evidence:
+      - "sdd/artifacts/PHASE_3_CONTRACT.yaml defer_to_next_phase"
+      - "sdd/artifacts/PHASE_3_CONTRACT.yaml acceptance_tests.test_forbidden_design_surface_absent"
+  - id: "RD-004"
+    decision: "The Phase 2 to Phase 3 handoff contains placeholders and does not add implementation or design authority."
+    classification: "evidence_backed_fact"
+    evidence:
+      - "sdd/handoffs/PHASE_2_TO_3.md"
+  - id: "RD-005"
+    decision: "Specific future architecture inputs remain unresolved until a later contract authorizes the required discovery or design work."
+    classification: "open_question"
+    evidence:
+      - "sdd/artifacts/PHASE_2_BOUNDARY.yaml open_questions"
+
+open_questions:
+  - "Which business situations are first-class enough to drive a future architecture design?"
+  - "What evidence threshold must be satisfied before architecture design is authorized?"
+  - "Which Phase 2 open questions block later architecture authorization?"
+  - "Which source document governs if later architecture needs conflict with doctrine, roadmap, or integration notes?"
+  - "What later contract scope would be sufficient to authorize architecture design without authorizing implementation?"
+
+deferrals:
+  - "Product implementation code is deferred until a later committed contract explicitly authorizes it."
+  - "Product schemas are deferred until a later committed contract explicitly authorizes them."
+  - "Modules are deferred until a later committed contract explicitly authorizes them."
+  - "Runtime integrations are deferred until a later committed contract explicitly authorizes them."
+  - "Automation workflows are deferred until a later committed contract explicitly authorizes them."
+  - "Product artifacts are deferred until a later committed contract explicitly authorizes them."
+  - "Solution architecture design is deferred until a later committed contract explicitly authorizes it."
+  - "Prompts, tools, agents, AI system behavior, and runtime orchestration are deferred until a later committed contract explicitly authorizes them."
+
+readiness_criteria:
+  - id: "RC-001"
+    description: "Architecture-readiness evidence requirements are explicit and traceable to Phase 2 boundary decisions."
+  - id: "RC-002"
+    description: "Allowed questions are framed without answering them as architecture or implementation decisions."
+  - id: "RC-003"
+    description: "Forbidden implementation and design surfaces remain explicit and absent."
+  - id: "RC-004"
+    description: "Source-of-truth precedence is documented for later architecture authorization review."
+  - id: "RC-005"
+    description: "Later architecture design remains deferred until a future committed contract explicitly authorizes it."
