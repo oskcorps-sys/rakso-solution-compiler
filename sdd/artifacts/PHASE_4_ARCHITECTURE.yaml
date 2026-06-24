@@ -1,0 +1,182 @@
+phase: 4
+title: "Phase 4 - Minimal Architecture Authorization"
+description: "Bounded, governance-only architecture authorization artifact for RAKSO Solution Compiler. This artifact records high-level architecture decisions, conceptual component-boundary framing, source-of-truth precedence, and readiness criteria without authorizing product implementation, schemas, executable modules, runtime integrations, workflows, prompts, tools, agents, AI behavior, runtime orchestration, executable interfaces, APIs, data models, infrastructure, deployment behavior, workflow automation, implementation planning, or product build."
+
+source_inputs:
+  state_snapshot: "sdd/artifacts/STATE_SNAPSHOT.yaml"
+  phase_4_contract: "sdd/artifacts/PHASE_4_CONTRACT.yaml"
+  phase_3_contract: "sdd/artifacts/PHASE_3_CONTRACT.yaml"
+  phase_3_readiness: "sdd/artifacts/PHASE_3_READINESS.yaml"
+  phase_3_to_4_handoff: "sdd/handoffs/PHASE_3_TO_4.md"
+  precedence:
+    - "The committed Phase 4 contract defines allowed work."
+    - "STATE_SNAPSHOT.yaml defines the active lifecycle state."
+    - "Phase 3 readiness evidence defines the evidence base for architecture authorization."
+    - "Phase 3 to Phase 4 handoff notes are contextual only and do not authorize scope expansion."
+    - "Conflicts remain open questions until resolved by an authorized SDD+ gate."
+
+architecture_boundary:
+  summary: "Phase 4 may authorize minimal architecture decisions and conceptual component-boundary framing, but it must not convert those decisions into implementation plans or executable design."
+  allowed_surface:
+    - "High-level architecture decisions traceable to Phase 3 readiness evidence."
+    - "Conceptual component-boundary framing."
+    - "Responsibility naming without executable module, schema, API, runtime, workflow, prompt, tool, agent, or orchestration design."
+    - "Source-of-truth precedence for later architecture and implementation-planning review."
+    - "Readiness criteria for deciding whether a later committed contract may authorize implementation planning."
+  excluded_surface:
+    - "Product implementation code"
+    - "Product schemas"
+    - "Executable modules"
+    - "Runtime integrations"
+    - "Automation workflows"
+    - "Product artifacts"
+    - "Prompts, tools, agents, or AI system behavior"
+    - "Runtime orchestration"
+    - "Executable interfaces or APIs"
+    - "Data models"
+    - "Infrastructure or deployment behavior"
+    - "Workflow automation"
+    - "Implementation planning"
+    - "Product build authorization"
+
+permitted_architecture_decisions:
+  - id: "PAD-001"
+    decision_type: "governance_boundary"
+    permitted_decision: "Record the minimum architecture boundary needed to preserve Phase 3 readiness evidence for later review."
+    limits:
+      - "Does not define executable interfaces, APIs, data models, modules, runtime behavior, or implementation tasks."
+      - "Does not authorize product build."
+  - id: "PAD-002"
+    decision_type: "conceptual_component_boundary"
+    permitted_decision: "Name conceptual responsibility areas only when needed to clarify future architecture review."
+    limits:
+      - "Responsibility areas are not modules, services, packages, schemas, tools, agents, workflows, or runtime components."
+      - "No implementation sequence or dependency graph is authorized."
+  - id: "PAD-003"
+    decision_type: "source_precedence"
+    permitted_decision: "Define which SDD+ artifacts govern later architecture and implementation-planning authorization."
+    limits:
+      - "Precedence rules do not resolve open product or implementation questions by design."
+  - id: "PAD-004"
+    decision_type: "future_readiness"
+    permitted_decision: "Define the evidence conditions a later committed contract must satisfy before implementation planning can be considered."
+    limits:
+      - "Criteria remain governance checks, not implementation plans."
+
+forbidden_surface:
+  product_implementation_code: "forbidden"
+  product_schemas: "forbidden"
+  executable_modules: "forbidden"
+  runtime_integrations: "forbidden"
+  automation_workflows: "forbidden"
+  product_artifacts: "forbidden"
+  prompts: "forbidden"
+  tools: "forbidden"
+  agents: "forbidden"
+  ai_system_behavior: "forbidden"
+  runtime_orchestration: "forbidden"
+  executable_interfaces: "forbidden"
+  apis: "forbidden"
+  data_models: "forbidden"
+  infrastructure: "forbidden"
+  deployment_behavior: "forbidden"
+  workflow_automation: "forbidden"
+  implementation_planning: "forbidden"
+  product_build: "forbidden"
+
+component_boundary_framing:
+  purpose: "Provide conceptual responsibility framing only, so a later phase can decide whether architecture or implementation-planning work should be authorized."
+  boundaries:
+    - id: "CBF-001"
+      name: "Source-of-truth governance"
+      responsibility: "Preserve the order of authority among committed SDD+ artifacts, state snapshots, handoffs, and source documents."
+      non_authorized_detail: "No storage model, schema, API, service, package, or runtime mechanism is defined."
+    - id: "CBF-002"
+      name: "Evidence interpretation"
+      responsibility: "Keep Phase 3 readiness evidence connected to later architecture authorization decisions."
+      non_authorized_detail: "No analysis engine, prompt, tool, agent, workflow, or runtime behavior is defined."
+    - id: "CBF-003"
+      name: "Architecture authorization control"
+      responsibility: "Clarify which decisions may be made before implementation planning is authorized."
+      non_authorized_detail: "No implementation plan, module boundary, interface, API, infrastructure, deployment behavior, or automation workflow is defined."
+    - id: "CBF-004"
+      name: "Future readiness gate"
+      responsibility: "Define checks a later phase must satisfy before product implementation planning can be considered."
+      non_authorized_detail: "No product build task, backlog, dependency plan, or execution sequence is defined."
+
+source_of_truth_precedence:
+  - priority: 1
+    source: "Committed SDD+ contracts"
+    governs: "Allowed and forbidden work for each phase."
+  - priority: 2
+    source: "STATE_SNAPSHOT.yaml"
+    governs: "Current lifecycle state and active phase."
+  - priority: 3
+    source: "Phase 3 readiness artifact"
+    governs: "Evidence requirements and unresolved readiness questions for architecture authorization."
+  - priority: 4
+    source: "Phase handoff notes"
+    governs: "Context only; does not authorize scope expansion."
+  - priority: 5
+    source: "Repository source documents"
+    governs: "Background context only unless incorporated by a committed SDD+ artifact."
+
+architecture_decisions:
+  - id: "AD-001"
+    decision: "Phase 4 architecture authorization remains governance-only and does not authorize product implementation."
+    classification: "evidence_backed_fact"
+    evidence:
+      - "sdd/artifacts/PHASE_4_CONTRACT.yaml specification.architecture_authorization.allowed_surface"
+      - "sdd/artifacts/PHASE_4_CONTRACT.yaml architecture_authorization.forbidden_surface"
+  - id: "AD-002"
+    decision: "Conceptual component-boundary framing may name responsibilities but must not define executable modules, schemas, APIs, runtime behavior, workflows, prompts, tools, agents, or implementation details."
+    classification: "evidence_backed_fact"
+    evidence:
+      - "sdd/artifacts/PHASE_4_CONTRACT.yaml acceptance_tests.test_component_boundaries_are_non_executable"
+  - id: "AD-003"
+    decision: "Source-of-truth precedence must put committed SDD+ artifacts ahead of handoff context and repository source documents for allowed work."
+    classification: "evidence_backed_fact"
+    evidence:
+      - "sdd/artifacts/PHASE_4_CONTRACT.yaml acceptance_tests.test_source_of_truth_precedence_is_explicit"
+      - "sdd/artifacts/PHASE_3_READINESS.yaml source_inputs.precedence"
+  - id: "AD-004"
+    decision: "Implementation planning and product build remain deferred until a later committed contract explicitly authorizes them."
+    classification: "evidence_backed_fact"
+    evidence:
+      - "sdd/artifacts/PHASE_4_CONTRACT.yaml defer_to_next_phase"
+  - id: "AD-005"
+    decision: "Future implementation-planning readiness must require explicit evidence that forbidden implementation and AI-system surfaces remain absent."
+    classification: "governance_decision"
+    evidence:
+      - "sdd/artifacts/PHASE_3_READINESS.yaml readiness_criteria"
+      - "sdd/artifacts/PHASE_4_CONTRACT.yaml success_criteria"
+
+open_questions:
+  - "Which later phase, if any, should authorize implementation planning?"
+  - "What evidence threshold must be met before implementation planning can be considered?"
+  - "Which unresolved Phase 3 readiness questions must be closed before any implementation plan is authorized?"
+  - "Which source documents should be incorporated by a future committed contract before product build is considered?"
+  - "What audit evidence will prove that product build, schemas, modules, integrations, workflows, prompts, tools, agents, AI behavior, and runtime orchestration remain absent?"
+
+deferrals:
+  - "Product implementation code is deferred until a later committed contract explicitly authorizes it."
+  - "Product schemas are deferred until a later committed contract explicitly authorizes them."
+  - "Executable modules are deferred until a later committed contract explicitly authorizes them."
+  - "Runtime integrations are deferred until a later committed contract explicitly authorizes them."
+  - "Automation workflows are deferred until a later committed contract explicitly authorizes them."
+  - "Product artifacts are deferred until a later committed contract explicitly authorizes them."
+  - "Prompts, tools, agents, AI system behavior, and runtime orchestration are deferred until a later committed contract explicitly authorizes them."
+  - "Executable interfaces, APIs, data models, infrastructure, deployment behavior, and workflow automation are deferred until a later committed contract explicitly authorizes them."
+  - "Implementation planning and product build authorization are deferred until a later committed contract explicitly authorizes them."
+
+readiness_criteria:
+  - id: "RC-001"
+    description: "Minimal architecture decisions are traceable to Phase 3 readiness evidence and the committed Phase 4 contract."
+  - id: "RC-002"
+    description: "Conceptual component-boundary framing names responsibilities only and does not define executable or runtime design."
+  - id: "RC-003"
+    description: "Source-of-truth precedence is explicit for later architecture and implementation-planning authorization review."
+  - id: "RC-004"
+    description: "Forbidden implementation, build, schema, module, integration, workflow, prompt, tool, agent, AI behavior, orchestration, interface, API, data model, infrastructure, and deployment surfaces remain absent."
+  - id: "RC-005"
+    description: "Future implementation planning remains deferred until a later committed contract explicitly authorizes it."
