@@ -13,5 +13,5 @@ metadata:
   project: rakso-solution-compiler
   framework: sdd-plus
   current_artifact: PHASE_4_CONTRACT.yaml
-  next_allowed_action: refine_phase_4_contract
+  next_allowed_action: complete_phase_4
 locked_at: '2026-06-24T00:11:59.942114Z'
