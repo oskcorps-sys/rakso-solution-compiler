@@ -1,255 +1,122 @@
-# RAKSO Solution Compiler Blueprint v1
+# RAKSO Solution Compiler Blueprint
 
 ## Definition
 
-RAKSO Solution Compiler is an internal system that converts raw business input into a sellable, scoped, validated, and executable solution package.
+RAKSO Solution Compiler is an internal system for turning messy business reality into governed solution evidence, bounded scope, and eventually executable delivery only when SDD+ explicitly authorizes it.
 
-## System layers
+The current repository is not in product-build mode. It is in an SDD+ governed lifecycle where each phase must be specified, contracted, implemented within scope, audited, and completed before later authority can exist.
 
-```txt
-RAKSO Solution Compiler
-|
-├── 1. Input Router
-├── 2. Evidence Ledger
-├── 3. Business Reality Diagnosis
-├── 4. Pain-to-Profit Branch
-├── 5. Offer Architecture Branch
-├── 6. Solution Type Decision
-├── 7. SDD+ Contract Builder
-├── 8. SpellWriter / Artifact Compiler
-├── 9. Execution Agent Profiles
-├── 10. Deployment Package
-└── 11. Market Expansion Loop
-```
+## Operating Governance
 
-## Layer 1: Input Router
+SDD+ is the operating governance for this repository. It is not an optional add-on, integration, or documentation layer.
 
-Accepts multiple types of business input.
+The active source of truth is the SDD+ artifact chain:
 
-Routes:
+- `sdd/artifacts/STATE_SNAPSHOT.yaml`
+- `sdd/artifacts/PHASE_1_DISCOVERY.yaml`
+- `sdd/artifacts/PHASE_2_BOUNDARY.yaml`
+- `sdd/artifacts/PHASE_3_READINESS.yaml`
+- `sdd/artifacts/PHASE_4_ARCHITECTURE.yaml`
 
-- Client transcript: Zoom, Teams, Google Meet, Fathom, Fireflies, manual notes
-- Small business reality scanner: no website, WhatsApp-first, paper, Excel, memory, no CRM, no SOP
-- Digital lead research: website, Google Business Profile, LinkedIn, reviews, directories, social media
-- Screenshot / WhatsApp evidence: screenshots, process photos, document images, scattered notes
-- Existing system audit: SOPs, spreadsheets, CRM, existing workflows, software stack
+Committed SDD+ contracts define what work is allowed. `STATE_SNAPSHOT.yaml` defines the lifecycle state. Public docs are explanatory only and cannot authorize implementation, schemas, modules, integrations, workflows, prompts, tools, agents, AI behavior, runtime orchestration, implementation planning, or product build.
 
-Rule:
+## Completed SDD+ Phase Chain
 
-```txt
-If there is a website, research it.
-If there is no website, interview.
-If there is no structure, reconstruct.
-If there is only chaos, organize.
-```
+Phase 0: Genesis / governance setup - COMPLETED
 
-## Layer 2: Evidence Ledger
+- Established the SDD+ lifecycle foundation.
+- Created the initial state snapshot and governance baseline.
+- Product implementation was not authorized.
 
-Separates facts, assumptions, and unknowns.
+Phase 1: Discovery and problem definition - COMPLETED
 
-Evidence levels:
+- Output: `sdd/artifacts/PHASE_1_DISCOVERY.yaml`
+- Defined the business problem, source-of-truth boundaries, evidence requirements, assumptions, open questions, non-goals, forbidden surface, and readiness criteria.
+- Product implementation was not authorized.
 
-- `client_stated`
-- `transcript_confirmed`
-- `document_confirmed`
-- `public_verified`
-- `sector_inferred`
-- `assumption`
-- `unknown`
+Phase 2: Solution boundary definition - COMPLETED
 
-Rule:
+- Output: `sdd/artifacts/PHASE_2_BOUNDARY.yaml`
+- Defined solution-boundary decisions, allowed scope, evidence classification rules, open questions, deferrals, and forbidden surface.
+- Product implementation was not authorized.
 
-```txt
-Do not mix evidence with hypothesis.
-```
+Phase 3: Architecture readiness definition - COMPLETED
 
-## Layer 3: Business Reality Diagnosis
+- Output: `sdd/artifacts/PHASE_3_READINESS.yaml`
+- Defined what evidence must exist before architecture can be authorized.
+- Architecture design, implementation planning, and product build were not authorized.
 
-Reconstructs how the business actually works.
+Phase 4: Minimal architecture authorization - COMPLETED
 
-Must identify:
+- Output: `sdd/artifacts/PHASE_4_ARCHITECTURE.yaml`
+- Authorized bounded/minimal architecture decisions and conceptual responsibility framing only.
+- Product implementation, implementation planning, and product build remain forbidden.
 
-- what the business sells
-- how customers arrive
-- how work enters the business
-- who does what
-- tools used
-- bottlenecks
-- repeated tasks
-- forgotten tasks
-- lost information
-- owner dependency
-- human approval points
+## Current Architecture Rule
 
-Universal small business areas:
+Phase 4 authorizes bounded/minimal architecture only.
 
-1. Lead / Customer Intake
-2. Scheduling / Appointments
-3. Job / Case Tracking
-4. Documents / Photos / Notes
-5. Payments / Invoices
-6. Follow-up / Reviews / Retention
+Allowed current architecture surface:
 
-## Layer 4: Pain-to-Profit Branch
+- high-level architecture decisions traceable to Phase 3 readiness evidence
+- conceptual component-boundary framing
+- responsibility naming without executable design
+- source-of-truth precedence
+- readiness criteria for a later phase to decide whether implementation planning may be considered
 
-Converts operational pain into economic impact.
+Forbidden current surface:
 
-Outputs:
+- product implementation code
+- product schemas
+- executable modules
+- runtime integrations
+- automation workflows
+- product artifacts
+- prompts, tools, agents, or AI system behavior
+- runtime orchestration
+- executable interfaces or APIs
+- data models
+- infrastructure or deployment behavior
+- workflow automation
+- implementation planning
+- product build authorization
 
-- pain
-- who feels it
-- frequency
-- time lost per event
-- monthly volume
-- revenue leakage
-- estimated monthly cost
-- estimated annual cost
-- urgency
-- confidence
-- missing data
+## Conceptual Future Capabilities
 
-Rule:
+Older blueprint layers remain useful vocabulary for future RAKSO Solution Compiler capability, but they are conceptual only unless a future committed SDD+ contract explicitly authorizes them.
 
-```txt
-If the pain has no money, there is no project yet.
-```
+Conceptual future layers include:
 
-## Layer 5: Offer Architecture Branch
-
-Packages the solution as something sellable.
-
-Outputs:
-
-- offer diagnosis
-- value proposition
-- offer name
-- simple explanation
-- offer stack
-- pricing hypothesis
-- micro-ad
-- outreach angle
-- sales brief
-- risk reversal
-- scope boundary
-
-Rule:
-
-```txt
-Offer architecture does not invent pain. It packages validated pain or clearly marked hypotheses.
-```
-
-## Layer 6: Solution Type Decision
-
-Chooses the simplest solution that captures value.
-
-Options:
-
-0. No project
-1. SOP / checklist
-2. Template pack
-3. Form + spreadsheet
-4. CRM-lite setup
-5. Automation workflow
-6. AI-assisted workflow
-7. Agentic workflow
-8. Custom app
-
-Rule:
-
-```txt
-The simplest solution that captures value wins.
-```
-
-## Layer 7: SDD+ Contract Builder
-
-Formalizes the solution into a closed contract.
-
-Outputs:
-
-- project name
-- client context
-- problem statement
-- evidence sources
-- business case
-- offer reference
-- actors
-- inputs
-- outputs
-- constraints
-- success criteria
-- test cases
-- forbidden actions
-- human approval points
-- out of scope
-- deployment target
-- acceptance criteria
-
-## Layer 8: SpellWriter / Artifact Compiler
-
-Converts the SDD+ contract into executable artifacts.
-
-Targets:
-
-- Claude
-- Codex
-- Antigravity
-- OpenAI API
-- n8n
-- Make/Zapier
-- Ollama
-- custom app
-- Hermes/ModelRack
-
-## Layer 9: Execution Agent Profiles
-
-Defines who executes what.
-
-Technical profiles:
-
-- Researcher Agent
-- Coder Agent
-- DevOps Agent
-
-Business profiles:
-
-- Discovery Analyst
-- Business Case Analyst
-- Offer Architect
+- Input Router
+- Evidence Ledger
+- Business Reality Diagnosis
+- Pain-to-Profit Branch
+- Offer Architecture Branch
+- Solution Type Decision
 - SDD+ Contract Builder
-- Critical Lens
+- SpellWriter / Artifact Compiler
+- Execution Agent Profiles
+- Deployment Package
+- Market Expansion Loop
 
-## Layer 10: Deployment Package
+These names do not imply that product code, schemas, modules, integrations, workflows, prompts, tools, agents, AI behavior, runtime orchestration, implementation planning, or product build exists or is authorized now.
 
-Produces a complete implementation folder.
+## Current System Shape
 
-Example:
-
-```txt
-/client-name/
-├── 01_evidence_report.md
-├── 02_operational_diagnosis.md
-├── 03_pain_to_profit.yaml
-├── 04_offer_brief.md
-├── 05_micro_ad.md
-├── 06_solution_options.md
-├── 07_sdd_contract.yaml
-├── 08_implementation_brief.md
-├── 09_agent_profiles/
-└── 10_deployment_package/
-```
-
-## Layer 11: Market Expansion Loop
-
-Uses validated pain patterns to find similar leads.
-
-Flow:
+The current system shape is a governed SDD+ artifact chain through completed Phase 4:
 
 ```txt
-Validated Pain -> Pain Pattern Library -> Similar Business Finder -> Lead Research -> Outreach Angle -> Discovery Call -> New Client Input
+STATE_SNAPSHOT.yaml
+  -> PHASE_1_DISCOVERY.yaml
+  -> PHASE_2_BOUNDARY.yaml
+  -> PHASE_3_READINESS.yaml
+  -> PHASE_4_ARCHITECTURE.yaml
 ```
 
-Rule:
+The repository has completed governance discovery, solution boundary, architecture readiness, and minimal architecture authorization. It has not started implementation planning or product build.
 
-```txt
-Lead research generates hypotheses, not truths.
-```
+## Non-Negotiable Rule
+
+No product implementation begins until a later committed SDD+ contract explicitly authorizes it.
+
+No implementation planning begins until a later committed SDD+ contract explicitly authorizes it.
