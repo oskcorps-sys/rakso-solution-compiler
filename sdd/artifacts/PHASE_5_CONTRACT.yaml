@@ -3,10 +3,140 @@ contract_id: contract-phase-5-v1
 created_at: '2026-06-25T12:41:23.096644+00:00'
 status: DRAFT
 specification:
-  title: Phase 5 — [TITLE]
-  description: 'TODO: describe this phase'
-  success_criteria: []
-acceptance_tests: []
+  title: "Phase 5 - Implementation Planning Authorization"
+  description: "Define the governance boundary for authorizing a bounded implementation-planning artifact for RAKSO Solution Compiler without authorizing product implementation code, executable schemas, executable modules, runtime integrations, automation workflows, prompts, tools, agents, AI system behavior, runtime orchestration, deployment, or product build."
+  purpose: "Convert completed Phase 4 minimal architecture authorization into implementation-planning authorization criteria while preserving all product-build prohibitions."
+  scope:
+    included:
+      - "Define which implementation-planning decisions are allowed."
+      - "Define which implementation-planning decisions remain forbidden or deferred."
+      - "Define source-of-truth precedence for implementation planning."
+      - "Define planning boundaries derived from Phase 4 architecture authorization."
+      - "Define the allowed shape of a future implementation-planning artifact."
+      - "Define readiness criteria for a future product-build authorization phase."
+    excluded:
+      - "Product implementation code"
+      - "Executable schemas"
+      - "Executable modules"
+      - "Runtime integrations"
+      - "Automation workflows"
+      - "Product artifacts"
+      - "Prompts, tools, agents, or AI system behavior design"
+      - "Runtime orchestration"
+      - "Executable interfaces or APIs"
+      - "Data models"
+      - "Infrastructure or deployment behavior"
+      - "Workflow automation"
+      - "Product build authorization"
+  implementation_planning_authorization:
+    allowed_surface:
+      - "Governance-only implementation-planning authorization."
+      - "Planning decision categories traceable to Phase 4 architecture authorization."
+      - "Planning boundaries that identify what a later planning artifact may discuss without defining executable work."
+      - "Source-of-truth precedence for future implementation-planning review."
+      - "Readiness criteria for deciding whether a later committed contract may authorize product build."
+    forbidden_surface:
+      - "No product implementation code may be created."
+      - "No executable schemas, executable modules, runtime integrations, automation workflows, or product artifacts may be created."
+      - "No prompts, tools, agents, AI system behavior, or runtime orchestration may be designed."
+      - "No executable interfaces, APIs, data models, infrastructure, deployment behavior, or workflow automation may be defined."
+      - "No product build may be authorized unless a later committed contract explicitly permits it."
+  success_criteria:
+    - "Allowed implementation-planning decisions are minimal, explicit, and traceable to Phase 4 architecture evidence."
+    - "Planning boundaries remain governance-only and do not define executable artifacts, runtime behavior, product code, schemas, modules, integrations, workflows, prompts, tools, agents, AI behavior, deployment, or build."
+    - "Forbidden product-build and executable surfaces remain excluded."
+    - "Source-of-truth precedence is explicit for conflicts between SDD+ artifacts and repository source documents."
+    - "Acceptance tests use STATE_SNAPSHOT.yaml as the lifecycle source of truth and do not hardcode a specific current_state."
+inputs:
+  state_snapshot:
+    type: "dict"
+    required: true
+    description: "Current SDD+ lifecycle state for the repository."
+    example: {"current_phase": 5, "current_state": "ACTIVE_GATE_STATE"}
+    constraints: "Must validate against StateSnapshotSchema. STATE_SNAPSHOT.yaml is the source of truth for the current lifecycle state. The artifact must remain current_phase 5, completed_phases must include 0, 1, 2, 3, and 4, and current_state must be valid for the active SDD+ gate under review."
+  phase_4_contract:
+    type: "dict"
+    required: true
+    description: "Committed Phase 4 minimal architecture authorization contract."
+    example: {"phase": 4, "status": "COMMITTED"}
+    constraints: "Must remain committed and must not authorize product implementation or product build."
+  phase_4_architecture:
+    type: "dict"
+    required: true
+    description: "Completed Phase 4 architecture artifact used as the primary source for implementation-planning authorization boundaries."
+    example: {"phase": 4, "title": "Phase 4 - Minimal Architecture Authorization"}
+    constraints: "Must be read-only source material and must not be expanded into product implementation, executable schemas, modules, integrations, workflows, prompts, tools, agents, AI behavior, runtime orchestration, deployment, or product build."
+  phase_4_handoff:
+    type: "dict"
+    required: false
+    description: "Phase 4 to Phase 5 handoff context."
+    example: {"path": "sdd/handoffs/PHASE_4_TO_5.md"}
+    constraints: "Read-only handoff context; TODO placeholders do not authorize scope expansion."
+outputs:
+  implementation_planning_contract:
+    type: "dict"
+    description: "A refined Phase 5 contract that binds implementation-planning authorization before any planning artifact, implementation work, or product build is authorized."
+    example: {"contract_id": "contract-phase-5-v1", "status": "DRAFT"}
+    schema_ref: "/workspace/sdd-plus/sdd/schemas/contract.py"
+    validation_rule: "Must validate against ContractSchema."
+  gate_readiness_tests:
+    type: "list"
+    description: "Acceptance tests that indicate whether Phase 5 is ready for later SDD+ gates without authorizing product build."
+    example: ["test_planning_decisions_are_traceable", "test_product_build_surface_absent"]
+    validation_rule: "Each item must be represented by an acceptance test in this contract."
+constraints:
+  - "Do not create product implementation code in Phase 5."
+  - "Do not create executable schemas, executable modules, runtime integrations, automation workflows, or product artifacts."
+  - "Do not design prompts, tools, agents, AI system behavior, or runtime orchestration."
+  - "Do not define executable interfaces, APIs, data models, infrastructure, deployment behavior, or workflow automation."
+  - "Do not authorize product build unless a later committed contract explicitly permits it."
+  - "Keep implementation-planning decisions bounded, non-executable, and traceable to Phase 4 architecture evidence."
+  - "Do not transition lifecycle state as part of this contract refinement."
+  - "Do not self-approve this contract."
+assumptions:
+  - "Phases 0, 1, 2, 3, and 4 are completed and listed in completed_phases."
+  - "The current lifecycle state is governed by STATE_SNAPSHOT.yaml."
+  - "Phase 4 architecture evidence is sufficient to define implementation-planning authorization boundaries but not sufficient to authorize product build."
+  - "Existing repository documents and SDD+ artifacts are source material, not product implementation or build authority."
+acceptance_tests:
+  - name: "test_phase_5_contract_validates"
+    given: "PHASE_5_CONTRACT.yaml exists under sdd/artifacts."
+    when: "The artifact is loaded with /workspace/sdd-plus ContractSchema."
+    then: "Validation succeeds and status remains DRAFT until an authorized contract status update occurs."
+  - name: "test_phase_5_state_matches_active_gate"
+    given: "STATE_SNAPSHOT.yaml exists under sdd/artifacts."
+    when: "The artifact is loaded with /workspace/sdd-plus StateSnapshotSchema."
+    then: "current_phase is 5, completed_phases includes 0, 1, 2, 3, and 4, and current_state matches the active SDD+ lifecycle gate under review."
+  - name: "test_planning_decisions_are_traceable"
+    given: "An implementation-planning decision is proposed."
+    when: "The decision is checked against Phase 4 architecture evidence."
+    then: "The decision is traceable to Phase 4 evidence and remains within governance-only implementation-planning authorization."
+  - name: "test_planning_boundaries_are_non_executable"
+    given: "An implementation-planning boundary is framed."
+    when: "The boundary is reviewed under Phase 5 scope."
+    then: "The boundary may define planning categories and evidence needs but does not define product code, executable schemas, modules, APIs, data models, runtime behavior, integrations, workflows, prompts, tools, agents, deployment, or build steps."
+  - name: "test_source_of_truth_precedence_is_explicit"
+    given: "Phase 4 artifacts, SDD+ state, handoffs, and repository source documents are reviewed."
+    when: "A conflict appears between source materials."
+    then: "Committed SDD+ artifacts govern allowed work, Phase 4 architecture governs planning evidence, and unresolved conflicts remain open questions."
+  - name: "test_product_build_surface_absent"
+    given: "The repository is scanned after Phase 5 contract refinement."
+    when: "Files and contract scope are inspected."
+    then: "No product implementation code, executable schemas, executable modules, runtime integrations, automation workflows, product artifacts, prompts, tools, agents, AI behavior, runtime orchestration, executable interfaces, APIs, data models, infrastructure, deployment behavior, workflow automation, or product build authorization exists."
+  - name: "test_lifecycle_wording_is_neutral"
+    given: "The Phase 5 contract is reviewed across lifecycle gates."
+    when: "State wording is inspected."
+    then: "STATE_SNAPSHOT.yaml remains the lifecycle source of truth and no acceptance test hardcodes a specific current_state value."
+defer_to_next_phase:
+  - "Product implementation code is deferred until a later committed contract explicitly authorizes it."
+  - "Executable schemas are deferred until a later committed contract explicitly authorizes them."
+  - "Executable modules are deferred until a later committed contract explicitly authorizes them."
+  - "Runtime integrations are deferred until a later committed contract explicitly authorizes them."
+  - "Automation workflows are deferred until a later committed contract explicitly authorizes them."
+  - "Product artifacts are deferred until a later committed contract explicitly authorizes them."
+  - "Prompts, tools, agents, AI system behavior, and runtime orchestration are deferred until a later committed contract explicitly authorizes them."
+  - "Executable interfaces, APIs, data models, infrastructure, deployment behavior, and workflow automation are deferred until a later committed contract explicitly authorizes them."
+  - "Product build authorization is deferred until a later committed contract explicitly authorizes it."
 files_to_create: []
 files_to_modify: []
 scope_is_locked: false
