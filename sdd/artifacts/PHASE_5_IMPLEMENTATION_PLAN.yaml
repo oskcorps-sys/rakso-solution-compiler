@@ -1,0 +1,192 @@
+phase: 5
+title: "Phase 5 - Bounded Implementation Planning Authorization"
+description: "Governance-only implementation-planning artifact for RAKSO Solution Compiler. This artifact records planning decision categories, evidence needs, planning-level responsibility boundaries, source-of-truth precedence, explicit deferrals, and readiness criteria for a later product-build authorization phase without authorizing product implementation code, executable schemas, executable modules, runtime integrations, automation workflows, product artifacts, prompts, tools, agents, AI system behavior, runtime orchestration, executable interfaces, APIs, data models, infrastructure, deployment behavior, workflow automation, implementation tasks, tickets, backlog, sprint plan, dependency graph, deployment plan, database plan, API plan, runtime execution plan, or product build."
+
+source_inputs:
+  state_snapshot: "sdd/artifacts/STATE_SNAPSHOT.yaml"
+  phase_5_contract: "sdd/artifacts/PHASE_5_CONTRACT.yaml"
+  phase_4_contract: "sdd/artifacts/PHASE_4_CONTRACT.yaml"
+  phase_4_architecture: "sdd/artifacts/PHASE_4_ARCHITECTURE.yaml"
+  phase_4_to_5_handoff: "sdd/handoffs/PHASE_4_TO_5.md"
+  precedence:
+    - "The committed Phase 5 contract defines the allowed and forbidden planning scope."
+    - "STATE_SNAPSHOT.yaml defines the active lifecycle state."
+    - "The committed Phase 4 architecture artifact defines the evidence base for planning authorization."
+    - "The Phase 4 to Phase 5 handoff is contextual only and does not authorize scope expansion."
+    - "Conflicts remain open questions until resolved by an authorized SDD+ gate."
+
+planning_boundary:
+  summary: "Phase 5 may define bounded implementation-planning authorization categories and evidence needs, but it must not create executable implementation content or authorize product build."
+  allowed_surface:
+    - "Planning decision categories only."
+    - "Evidence needs for later implementation-planning review."
+    - "Planning-level responsibility boundaries derived from Phase 4 architecture evidence."
+    - "Source-of-truth precedence for later planning and build authorization review."
+    - "Readiness criteria for deciding whether a later committed contract may authorize product build."
+  excluded_surface:
+    - "Product implementation code"
+    - "Executable schemas"
+    - "Executable modules"
+    - "Runtime integrations"
+    - "Automation workflows"
+    - "Product artifacts"
+    - "Prompts, tools, agents, or AI system behavior"
+    - "Runtime orchestration"
+    - "Executable interfaces or APIs"
+    - "Data models"
+    - "Infrastructure"
+    - "Deployment behavior"
+    - "Workflow automation"
+    - "Implementation tasks, tickets, backlog, sprint plan, or dependency graph"
+    - "Deployment plan, database plan, API plan, or runtime execution plan"
+    - "Product build authorization"
+
+permitted_planning_decisions:
+  - id: "PPD-001"
+    decision_type: "planning_category_boundary"
+    permitted_decision: "Name categories of implementation planning that may need future governance review."
+    limits:
+      - "Categories are not tasks, tickets, backlog items, modules, schemas, APIs, runtime components, deployment steps, or build steps."
+      - "Categories do not authorize product implementation."
+  - id: "PPD-002"
+    decision_type: "evidence_need"
+    permitted_decision: "Identify evidence required before a later phase can consider implementation planning or product build authorization."
+    limits:
+      - "Evidence needs are checks and source requirements only, not execution steps or implementation plans."
+  - id: "PPD-003"
+    decision_type: "planning_responsibility_boundary"
+    permitted_decision: "Frame planning-level responsibility areas derived from Phase 4 conceptual architecture boundaries."
+    limits:
+      - "Responsibility areas are not executable modules, services, packages, schemas, prompts, tools, agents, workflows, or runtime components."
+  - id: "PPD-004"
+    decision_type: "future_build_readiness"
+    permitted_decision: "Define readiness criteria a later committed contract must satisfy before product build may be considered."
+    limits:
+      - "Readiness criteria do not authorize product build, implementation tasks, deployment, infrastructure, APIs, data models, or runtime behavior."
+
+forbidden_surface:
+  product_implementation_code: "forbidden"
+  executable_schemas: "forbidden"
+  executable_modules: "forbidden"
+  runtime_integrations: "forbidden"
+  automation_workflows: "forbidden"
+  product_artifacts: "forbidden"
+  prompts: "forbidden"
+  tools: "forbidden"
+  agents: "forbidden"
+  ai_system_behavior: "forbidden"
+  runtime_orchestration: "forbidden"
+  executable_interfaces: "forbidden"
+  apis: "forbidden"
+  data_models: "forbidden"
+  infrastructure: "forbidden"
+  deployment_behavior: "forbidden"
+  workflow_automation: "forbidden"
+  implementation_tasks: "forbidden"
+  tickets: "forbidden"
+  backlog: "forbidden"
+  sprint_plan: "forbidden"
+  dependency_graph: "forbidden"
+  deployment_plan: "forbidden"
+  database_plan: "forbidden"
+  api_plan: "forbidden"
+  runtime_execution_plan: "forbidden"
+  product_build_authorization: "forbidden"
+
+planning_artifact_shape:
+  allowed_sections:
+    - "phase"
+    - "title"
+    - "description"
+    - "source_inputs"
+    - "planning_boundary"
+    - "permitted_planning_decisions"
+    - "forbidden_surface"
+    - "planning_artifact_shape"
+    - "source_of_truth_precedence"
+    - "implementation_planning_decisions"
+    - "open_questions"
+    - "deferrals"
+    - "readiness_criteria"
+  required_properties:
+    - "Governance-only content."
+    - "Traceability to Phase 4 architecture evidence and the committed Phase 5 contract."
+    - "Explicit absence of product implementation and product build authorization."
+    - "No executable implementation detail."
+  prohibited_properties:
+    - "Implementation tasks, tickets, backlog, sprint plan, dependency graph, deployment plan, database plan, API plan, or runtime execution plan."
+    - "Executable interfaces, schemas, modules, integrations, workflows, prompts, tools, agents, AI behavior, orchestration, infrastructure, deployment behavior, or product build instructions."
+
+source_of_truth_precedence:
+  - priority: 1
+    source: "Committed SDD+ contracts"
+    governs: "Allowed and forbidden work for each phase."
+  - priority: 2
+    source: "STATE_SNAPSHOT.yaml"
+    governs: "Current lifecycle state and active phase."
+  - priority: 3
+    source: "Phase 4 architecture artifact"
+    governs: "Conceptual architecture evidence for planning authorization."
+  - priority: 4
+    source: "Phase handoff notes"
+    governs: "Context only; does not authorize scope expansion."
+  - priority: 5
+    source: "Repository source documents"
+    governs: "Background context only unless incorporated by a committed SDD+ artifact."
+
+implementation_planning_decisions:
+  - id: "IPD-001"
+    decision: "Phase 5 implementation planning remains governance-only and does not authorize product implementation or product build."
+    classification: "evidence_backed_fact"
+    evidence:
+      - "sdd/artifacts/PHASE_5_CONTRACT.yaml specification.description"
+      - "sdd/artifacts/PHASE_5_CONTRACT.yaml constraints"
+  - id: "IPD-002"
+    decision: "Planning may identify categories, evidence needs, and responsibility boundaries, but must not define executable schemas, modules, APIs, data models, runtime behavior, integrations, workflows, prompts, tools, agents, infrastructure, deployment behavior, or build steps."
+    classification: "governance_decision"
+    evidence:
+      - "sdd/artifacts/PHASE_5_CONTRACT.yaml specification.implementation_planning_authorization.allowed_surface"
+      - "sdd/artifacts/PHASE_5_CONTRACT.yaml acceptance_tests.test_planning_boundaries_are_non_executable"
+  - id: "IPD-003"
+    decision: "Phase 4 architecture is sufficient evidence for planning-boundary framing but not sufficient evidence for product build authorization."
+    classification: "evidence_backed_fact"
+    evidence:
+      - "sdd/artifacts/PHASE_4_ARCHITECTURE.yaml architecture_decisions.AD-004"
+      - "sdd/artifacts/PHASE_5_CONTRACT.yaml assumptions"
+  - id: "IPD-004"
+    decision: "A future product-build authorization phase must first prove that forbidden implementation, build, schema, module, integration, workflow, prompt, tool, agent, AI behavior, runtime orchestration, interface, API, data model, infrastructure, deployment, and workflow automation surfaces remain absent or are explicitly governed by a later committed contract."
+    classification: "governance_decision"
+    evidence:
+      - "sdd/artifacts/PHASE_5_CONTRACT.yaml acceptance_tests.test_product_build_surface_absent"
+      - "sdd/artifacts/PHASE_4_ARCHITECTURE.yaml readiness_criteria"
+
+open_questions:
+  - "Which later phase, if any, should authorize product-build planning beyond governance-only readiness criteria?"
+  - "What additional evidence must be gathered before executable schemas, modules, APIs, data models, integrations, workflows, infrastructure, deployment behavior, prompts, tools, agents, AI behavior, or runtime orchestration can be considered?"
+  - "Which unresolved Phase 4 architecture questions must be closed before a later committed contract may authorize product build?"
+  - "What external blind audit evidence will be required before Phase 5 can complete?"
+  - "Which source documents must be incorporated by a future committed contract before any implementation task, ticket, backlog, sprint plan, dependency graph, deployment plan, database plan, API plan, runtime execution plan, or product build is considered?"
+
+deferrals:
+  - "Product implementation code is deferred until a later committed contract explicitly authorizes it."
+  - "Executable schemas are deferred until a later committed contract explicitly authorizes them."
+  - "Executable modules are deferred until a later committed contract explicitly authorizes them."
+  - "Runtime integrations are deferred until a later committed contract explicitly authorizes them."
+  - "Automation workflows are deferred until a later committed contract explicitly authorizes them."
+  - "Product artifacts are deferred until a later committed contract explicitly authorizes them."
+  - "Prompts, tools, agents, AI system behavior, and runtime orchestration are deferred until a later committed contract explicitly authorizes them."
+  - "Executable interfaces, APIs, data models, infrastructure, deployment behavior, and workflow automation are deferred until a later committed contract explicitly authorizes them."
+  - "Implementation tasks, tickets, backlog, sprint plan, dependency graph, deployment plan, database plan, API plan, and runtime execution plan are deferred until a later committed contract explicitly authorizes them."
+  - "Product build authorization is deferred until a later committed contract explicitly authorizes it."
+
+readiness_criteria:
+  - id: "RC-001"
+    description: "Planning decisions are limited to categories, evidence needs, planning-level responsibility boundaries, source-of-truth precedence, deferrals, and future readiness criteria."
+  - id: "RC-002"
+    description: "Every planning decision is traceable to the committed Phase 5 contract and Phase 4 architecture evidence."
+  - id: "RC-003"
+    description: "The artifact does not define product implementation code, executable schemas, executable modules, runtime integrations, automation workflows, product artifacts, prompts, tools, agents, AI system behavior, runtime orchestration, executable interfaces, APIs, data models, infrastructure, deployment behavior, workflow automation, implementation tasks, tickets, backlog, sprint plan, dependency graph, deployment plan, database plan, API plan, runtime execution plan, or product build authorization."
+  - id: "RC-004"
+    description: "Source-of-truth precedence is explicit for later implementation-planning and product-build authorization review."
+  - id: "RC-005"
+    description: "A later product-build authorization phase remains blocked until a committed contract explicitly authorizes it and required audit evidence is available."
