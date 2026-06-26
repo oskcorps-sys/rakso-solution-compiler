@@ -4,17 +4,18 @@
 
 This document is a governance authorization packet.
 
-It does not authorize Phase 6 by itself.
-It does not begin Phase 6.
+This packet authorizes only Phase 6A: Governance Scope Lock.
+
 It does not authorize product implementation, product build, executable implementation planning, runtime, agents, workflows, integrations, schemas, modules, scripts, tests, deployment, source code, application code, infrastructure, CI, GitHub Actions, Supabase configuration, or external service integration.
 
-This packet exists only to make the Phase 6 authorization decision explicit, reviewable, and auditable.
+This packet exists only to make the Phase 6A governance authorization decision explicit, reviewable, and auditable.
 
 ## Current Confirmed State
 
 - Phase 5: completed
 - Phase 5.1: SDD Guard Governance Patch completed, aligned, and verified
-- Latest verified governance baseline before this packet: `22c026a4b5c2a3a193196e7670464a0ec3d8d317`
+- Latest verified governance baseline before original packet: `22c026a4b5c2a3a193196e7670464a0ec3d8d317`
+- Latest verified governance baseline before approval: `106b830066281035d46f34e483f7b9d9fa688fd6`
 - Completed phases: `[0, 1, 2, 3, 4, 5]`
 - Product implementation: absent
 - Product build authorization: absent
@@ -23,7 +24,7 @@ This packet exists only to make the Phase 6 authorization decision explicit, rev
 
 ## Purpose
 
-The purpose of this packet is to request an explicit decision on whether Phase 6 may be authorized.
+The purpose of this packet is to approve a limited Phase 6A governance action.
 
 No implicit authorization is allowed.
 No inferred authorization is allowed.
@@ -31,50 +32,81 @@ No tool, commit, scan, report, or acceleration mechanism may substitute for the 
 
 ## Required Decision
 
-One and only one decision may be selected:
-
 ```text
 PHASE_6_AUTHORIZATION_DECISION: APPROVED
-PHASE_6_AUTHORIZATION_DECISION: DENIED
-PHASE_6_AUTHORIZATION_DECISION: DEFERRED
 ```
 
-If the decision is `APPROVED`, the authorization must also define the allowed Phase 6 scope before any Phase 6 work begins.
+Approval is limited to the written scope below.
 
-If the decision is `DENIED`, Phase 6 remains closed.
+## Authorized Phase 6 Scope
 
-If the decision is `DEFERRED`, Phase 6 remains closed until a future authorization packet is approved.
+```text
+AUTHORIZED_PHASE_6_NAME: Phase 6A - Governance Scope Lock
+AUTHORIZED_PHASE_6_OBJECTIVE: Create the committed governance contract that defines what Phase 6 may and may not do before any product-facing work can be considered.
+AUTHORIZED_PHASE_6_ALLOWED_FILES:
+- docs/sdd-guard/PHASE_6_SCOPE_CONTRACT.md
+- docs/sdd-guard/PHASE_6_AUTHORIZATION_PACKET.md
+AUTHORIZED_PHASE_6_FORBIDDEN_FILES:
+- src/**
+- app/**
+- lib/**
+- modules/**
+- agents/**
+- workflows/**
+- integrations/**
+- runtime/**
+- deploy/**
+- supabase/**
+- schemas/**
+- scripts/**
+- tests/**
+- .github/**
+AUTHORIZED_PHASE_6_ALLOWED_ACTIONS:
+- Create docs/sdd-guard/PHASE_6_SCOPE_CONTRACT.md
+- Patch this packet only if needed to correct governance wording
+- Run SDD Guard governance scans over allowed governance files
+AUTHORIZED_PHASE_6_FORBIDDEN_ACTIONS:
+- Product implementation
+- Product build
+- Executable implementation planning
+- Runtime creation
+- Agent creation
+- Workflow creation
+- Integration creation
+- Schema creation
+- Module creation
+- Tool creation
+- Product prompt creation
+- Script creation
+- Test creation or execution
+- Deployment
+- Source code modification
+- Application code modification
+- Infrastructure creation
+- CI or GitHub Actions configuration
+- Supabase configuration
+- External service integration
+AUTHORIZED_PHASE_6_EXIT_CRITERIA:
+- PHASE_6_SCOPE_CONTRACT.md exists
+- SDD Guard returns PASS
+- Phase 6 product work remains unauthorized unless a later explicit scoped packet approves it
+AUTHORIZED_PHASE_6_ROLLBACK_RULE:
+- Revert Phase 6A commits if any forbidden surface is touched or if any product authorization is implied without explicit scoped approval
+```
 
 ## Approval Requirements
 
-Phase 6 may only begin if all of the following are true:
+Phase 6A may only proceed if all of the following are true:
 
 1. The authorization decision is explicitly `APPROVED`.
-2. The authorized Phase 6 scope is written in this packet or in a committed SDD+ contract that references this packet.
-3. The forbidden surface remains closed unless explicitly opened by the approved scope.
-4. SDD Guard returns `PASS` after the authorization packet is committed.
-5. The next allowed action changes from `request_phase_6_authorization` to the exact approved Phase 6 governance action.
-
-## Scope Declaration Required For Approval
-
-If approved, fill this section before Phase 6 starts:
-
-```text
-AUTHORIZED_PHASE_6_NAME:
-AUTHORIZED_PHASE_6_OBJECTIVE:
-AUTHORIZED_PHASE_6_ALLOWED_FILES:
-AUTHORIZED_PHASE_6_FORBIDDEN_FILES:
-AUTHORIZED_PHASE_6_ALLOWED_ACTIONS:
-AUTHORIZED_PHASE_6_FORBIDDEN_ACTIONS:
-AUTHORIZED_PHASE_6_EXIT_CRITERIA:
-AUTHORIZED_PHASE_6_ROLLBACK_RULE:
-```
-
-Blank scope means Phase 6 is not authorized.
+2. The approved scope is limited to Phase 6A Governance Scope Lock.
+3. The forbidden surface remains closed.
+4. SDD Guard returns `PASS` after this approval is committed.
+5. The next allowed action changes to `create_phase_6_scope_contract`.
 
 ## Default Forbidden Surface
 
-Unless explicitly authorized in the approved Phase 6 scope, the following remain forbidden:
+Unless explicitly authorized in a later approved scope, the following remain forbidden:
 
 ```text
 src/**
@@ -95,7 +127,7 @@ tests/**
 
 ## Default Forbidden Actions
 
-Unless explicitly authorized in the approved Phase 6 scope, the following remain forbidden:
+Unless explicitly authorized in a later approved scope, the following remain forbidden:
 
 - Product implementation
 - Product build
@@ -120,7 +152,7 @@ Unless explicitly authorized in the approved Phase 6 scope, the following remain
 
 ## SDD Guard Requirement
 
-Before any Phase 6 work may begin, SDD Guard must inspect this packet together with:
+Before Phase 6A work proceeds beyond this packet, SDD Guard must inspect this packet together with:
 
 ```text
 README.md
@@ -137,20 +169,20 @@ The required verdict is:
 GUARD_VERDICT: PASS
 ```
 
-Any `FAIL`, `REVIEW_REQUIRED`, or `STOP` means Phase 6 remains closed.
+Any `FAIL`, `REVIEW_REQUIRED`, or `STOP` means Phase 6A remains blocked.
 
 ## Decision Log
 
 Current decision:
 
 ```text
-PHASE_6_AUTHORIZATION_DECISION: DEFERRED
+PHASE_6_AUTHORIZATION_DECISION: APPROVED
 ```
 
 Reason:
 
 ```text
-Authorization packet created for review. Phase 6 remains closed until explicit approval and scope declaration are committed.
+Approved only for Phase 6A Governance Scope Lock. Product-facing work remains unauthorized.
 ```
 
 ## Current Next Allowed Action
@@ -159,10 +191,10 @@ Authorization packet created for review. Phase 6 remains closed until explicit a
 NEXT_ALLOWED_ACTION: run_governance_scan
 ```
 
-This scan must verify that this packet is a request only and does not itself authorize Phase 6.
+This scan must verify that this packet authorizes only Phase 6A Governance Scope Lock and does not authorize product-facing Phase 6 work.
 
 ## Non-Negotiable Rule
 
-A request is not approval.
+Approval is scoped.
 
-Phase 6 remains closed until approval is explicit, scoped, committed, and verified.
+Anything outside the written approved scope remains unauthorized.
