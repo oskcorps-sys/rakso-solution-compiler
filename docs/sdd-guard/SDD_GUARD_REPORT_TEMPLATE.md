@@ -84,6 +84,7 @@ docs/sdd-guard/SDD_GUARD_CONTRACT.md
 docs/sdd-guard/SDD_GUARD_REPORT_TEMPLATE.md
 docs/sdd-guard/SDD_GUARD_CHECKS.md
 docs/sdd-guard/CODEX_TASKS.md
+docs/sdd-guard/PHASE_6_AUTHORIZATION_PACKET.md
 Explicit SDD+ state or phase documents when identified by name
 ```
 
@@ -160,18 +161,7 @@ NEXT_ALLOWED_ACTION: request_phase_6_authorization
 NEXT_ALLOWED_ACTION: stop
 ```
 
-Never output:
-
-```text
-NEXT_ALLOWED_ACTION: implement_product
-NEXT_ALLOWED_ACTION: build_phase_6
-NEXT_ALLOWED_ACTION: create_runtime
-NEXT_ALLOWED_ACTION: create_agent
-NEXT_ALLOWED_ACTION: create_schema
-NEXT_ALLOWED_ACTION: create_workflow
-NEXT_ALLOWED_ACTION: create_integration
-NEXT_ALLOWED_ACTION: deploy
-```
+Forbidden next actions include product implementation, Phase 6 build, runtime creation, agent creation, schema creation, workflow creation, integration creation, and deployment.
 
 ## 8. Exact Next Command Recommendation
 
