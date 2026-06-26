@@ -14,7 +14,7 @@ These templates are documentation only. They are not scripts, prompts for produc
 - Product implementation: absent
 - Product build authorization: absent
 - Executable implementation planning: absent
-- Phase 6 product work: not authorized
+- Phase 6 product work: not authorized unless explicitly approved, scoped, committed, and verified
 
 ## Global Codex Constraints
 
@@ -41,6 +41,7 @@ docs/sdd-guard/SDD_GUARD_CONTRACT.md
 docs/sdd-guard/SDD_GUARD_REPORT_TEMPLATE.md
 docs/sdd-guard/SDD_GUARD_CHECKS.md
 docs/sdd-guard/CODEX_TASKS.md
+docs/sdd-guard/PHASE_6_AUTHORIZATION_PACKET.md
 ```
 
 ## Forbidden Surface
@@ -79,6 +80,7 @@ Inspect only:
 - docs/sdd-guard/SDD_GUARD_REPORT_TEMPLATE.md
 - docs/sdd-guard/SDD_GUARD_CHECKS.md
 - docs/sdd-guard/CODEX_TASKS.md
+- docs/sdd-guard/PHASE_6_AUTHORIZATION_PACKET.md
 
 Report:
 - Current phase position
@@ -107,26 +109,7 @@ Run CHECK-002 Authorization Boundary Check.
 
 Inspect only allowed SDD Guard governance files and README.md.
 
-Confirm current authorization is denied for:
-- Product implementation
-- Product build
-- Executable implementation planning
-- Phase 6 product work
-- Runtime
-- Agents
-- Workflows
-- Integrations
-- Schemas
-- Modules
-- Scripts
-- Tests
-- Deployment
-- Source code
-- Application code
-- Infrastructure
-- CI or GitHub Actions
-- Supabase configuration
-- External service integration
+Confirm current authorization is denied for product implementation, product build, executable implementation planning, Phase 6 product work, runtime, agents, workflows, integrations, schemas, modules, scripts, tests, deployment, source code, application code, infrastructure, CI/GitHub Actions, Supabase configuration, and external service integration unless explicitly approved, scoped, committed, and verified.
 
 Return PASS, FAIL, REVIEW_REQUIRED, or STOP.
 
@@ -148,8 +131,7 @@ Run CHECK-003 Stale Lifecycle Wording Scan.
 
 Inspect only allowed governance files and README.md.
 
-Review these terms:
-build, implement, implementation, runtime, agent, workflow, integration, schema, module, deploy, deployment, production, script, test, source code, application code, infrastructure, CI, GitHub Actions, Supabase, external service.
+Review lifecycle terms including build, implement, runtime, agent, workflow, integration, schema, module, deploy, production, script, test, source code, application code, infrastructure, CI, GitHub Actions, Supabase, external service, Phase 6, authorization, and approved.
 
 Classify findings as:
 - protective_usage
@@ -181,6 +163,7 @@ Inspect only:
 - docs/sdd-guard/SDD_GUARD_REPORT_TEMPLATE.md
 - docs/sdd-guard/SDD_GUARD_CHECKS.md
 - docs/sdd-guard/CODEX_TASKS.md
+- docs/sdd-guard/PHASE_6_AUTHORIZATION_PACKET.md
 
 Check for contradictions against:
 - SDD Guard is governance-only
@@ -190,6 +173,7 @@ Check for contradictions against:
 - SDD Guard cannot override SDD+ contracts
 - SDD Guard can only inspect, report, and recommend from a closed action set
 - README must not override or weaken the SDD Guard contract
+- Phase 6 authorization packet must remain request-only unless explicitly approved, scoped, committed, and verified
 
 Do not modify files.
 Report only mismatches.
@@ -250,18 +234,7 @@ Return exactly one NEXT_ALLOWED_ACTION from:
 - request_phase_6_authorization
 - stop
 
-Never return:
-- implement_product
-- build_phase_6
-- create_runtime
-- create_agent
-- create_schema
-- create_workflow
-- create_integration
-- deploy
-- create_script
-- run_tests
-- modify_source_code
+Never return any action that implies product work, Phase 6 work, runtime, agents, schemas, workflows, integrations, deployment, scripts, tests, or source code changes unless explicitly approved, scoped, committed, and verified.
 
 Do not modify files.
 ```
@@ -286,7 +259,7 @@ The command must:
 - Avoid script creation
 - Avoid tests
 - Avoid deployment
-- Avoid Phase 6 work
+- Avoid Phase 6 work unless explicitly approved, scoped, committed, and verified
 
 Return only:
 - command
@@ -347,6 +320,7 @@ Inspect only:
 - docs/sdd-guard/SDD_GUARD_REPORT_TEMPLATE.md
 - docs/sdd-guard/SDD_GUARD_CHECKS.md
 - docs/sdd-guard/CODEX_TASKS.md
+- docs/sdd-guard/PHASE_6_AUTHORIZATION_PACKET.md
 
 Stop immediately if any check returns STOP.
 
@@ -379,6 +353,7 @@ Allowed patch surface:
 - docs/sdd-guard/SDD_GUARD_REPORT_TEMPLATE.md
 - docs/sdd-guard/SDD_GUARD_CHECKS.md
 - docs/sdd-guard/CODEX_TASKS.md
+- docs/sdd-guard/PHASE_6_AUTHORIZATION_PACKET.md
 
 Do not apply the patch unless explicitly instructed.
 
@@ -400,7 +375,7 @@ Forbidden:
 - schemas
 - integrations
 - deployment
-- Phase 6 work
+- Phase 6 work unless explicitly approved, scoped, committed, and verified
 ```
 
 ## Non-Negotiable Stop Rule
