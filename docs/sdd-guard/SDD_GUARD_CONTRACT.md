@@ -103,9 +103,12 @@ SDD Guard must never recommend:
 
 Default allowed scan surfaces:
 
-- `docs/**`
 - `README.md`
 - `CHANGELOG.md`
+- `docs/sdd-guard/SDD_GUARD_CONTRACT.md`
+- `docs/sdd-guard/SDD_GUARD_REPORT_TEMPLATE.md`
+- `docs/sdd-guard/SDD_GUARD_CHECKS.md`
+- `docs/sdd-guard/CODEX_TASKS.md`
 - Explicit SDD+ state or phase documents when identified by name
 
 Default forbidden scan surfaces unless explicitly authorized by committed SDD+ contract:
