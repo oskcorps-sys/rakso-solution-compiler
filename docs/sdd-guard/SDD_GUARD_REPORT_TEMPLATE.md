@@ -70,9 +70,22 @@ Finding format:
 ## 4. Forbidden Surface Scan
 
 - Status: pass/fail/review_required
+- Allowed governance files inspected:
 - Forbidden surfaces avoided: yes/no
 - Unauthorized product directory scan detected: yes/no
 - Findings:
+
+Default allowed inspection surface:
+
+```text
+README.md
+CHANGELOG.md
+docs/sdd-guard/SDD_GUARD_CONTRACT.md
+docs/sdd-guard/SDD_GUARD_REPORT_TEMPLATE.md
+docs/sdd-guard/SDD_GUARD_CHECKS.md
+docs/sdd-guard/CODEX_TASKS.md
+Explicit SDD+ state or phase documents when identified by name
+```
 
 Forbidden surfaces unless explicitly authorized:
 
