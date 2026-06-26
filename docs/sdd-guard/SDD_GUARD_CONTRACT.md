@@ -109,6 +109,7 @@ Default allowed scan surfaces:
 - `docs/sdd-guard/SDD_GUARD_REPORT_TEMPLATE.md`
 - `docs/sdd-guard/SDD_GUARD_CHECKS.md`
 - `docs/sdd-guard/CODEX_TASKS.md`
+- `docs/sdd-guard/PHASE_6_AUTHORIZATION_PACKET.md`
 - Explicit SDD+ state or phase documents when identified by name
 
 Default forbidden scan surfaces unless explicitly authorized by committed SDD+ contract:
