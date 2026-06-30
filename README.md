@@ -30,6 +30,26 @@ This repository is the source of truth for the current RAKSO Solution Compiler d
 
 It is not a generic prompt library. It is not only a Claude Skill. It is not only a Codex repo. It is not only a lead research tool. Its long-term doctrine describes an operating framework for designing, packaging, validating, and executing business solutions, but those product implementation activities are not currently authorized.
 
+## RAKSO OS Role Model
+
+RAKSO is tool-agnostic. It is defined by capabilities, not vendor names.
+
+| Capability | Role | Possible examples |
+|---|---|---|
+| Command Brain | Strategy, synthesis, blindspots, adversarial thinking, decision framing | ChatGPT, Claude, Gemini, local LLM, human operator |
+| Primary Executor | Authorized repo work, edits, commits, refactors, implementation tasks when allowed | Codex, OpenHands, Cursor agent, Jules, human engineer |
+| Secondary Executor | Supporting docs, tooling, cleanup, scripts, auxiliary work when allowed | Jules, Codex, Cursor, Claude, human operator |
+| Orchestration Layer | Multi-worker or multi-agent coordination when authorized | Antigravity, LangGraph, CrewAI Flows, Temporal, Conductor, custom orchestrator |
+| External Audit Layer | Independent review, red-team logic, research validation, second opinion | Gemini, DeepSeek, Claude / Sonnet, ChatGPT, human reviewer |
+| Rules Engine | Contracts, boundaries, lifecycle rules, allowed and forbidden scope | SDD+ |
+| Source of Truth | Versioned state, artifacts, commits, audit trail, recovery point | GitHub, GitLab, local Git, other versioned repository |
+| Drift Guard | State checks, stale wording checks, forbidden-surface checks, next-action checks | SDD Guard, custom CLI, CI check, manual audit checklist |
+| Human Operator | Final authority, direction, approval, denial, override, stop | OZ or another accountable operator |
+
+These are examples, not dependencies. A tool can be replaced if another tool can fulfill the same capability while preserving contracts, state, and auditability.
+
+OZ's current preferred mapping is documented in `docs/rakso/RAKSO_OS_OPERATING_MODEL.md`, but RAKSO itself must remain portable if a vendor changes, merges, disappears, becomes too expensive, or stops fitting the role.
+
 ## Core layers
 
 1. Input Router
