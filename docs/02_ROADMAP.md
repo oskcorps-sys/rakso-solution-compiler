@@ -1,6 +1,17 @@
-# Current SDD+ Roadmap Status
+# RAKSO Solution Compiler Roadmap Status
 
-## Phase 0 - Genesis Setup
+## Current Verdict
+
+The RAKSO Solution Compiler framework is sufficiently closed to process the first vehicle through a separate workspace or repository.
+
+It is not a product runtime.
+It is not a SaaS.
+It is not TaxPak.
+It is the framework layer that processes vehicles.
+
+## Completed SDD+ Chain
+
+### Phase 0 - Genesis Setup
 
 Status: COMPLETED
 
@@ -8,7 +19,7 @@ Output: SDD+ lifecycle initialized, state snapshot, initial contract/governance 
 
 Product implementation: not authorized.
 
-## Phase 1 - Discovery and Problem Definition
+### Phase 1 - Discovery and Problem Definition
 
 Status: COMPLETED
 
@@ -18,7 +29,7 @@ Purpose: define business problem, evidence requirements, source-of-truth boundar
 
 Product implementation: not authorized.
 
-## Phase 2 - Solution Boundary Definition
+### Phase 2 - Solution Boundary Definition
 
 Status: COMPLETED
 
@@ -28,7 +39,7 @@ Purpose: define allowed solution boundary, scope decisions, deferrals, and forbi
 
 Product implementation: not authorized.
 
-## Phase 3 - Architecture Readiness Definition
+### Phase 3 - Architecture Readiness Definition
 
 Status: COMPLETED
 
@@ -38,7 +49,7 @@ Purpose: define evidence needed before architecture can be designed.
 
 Product implementation: not authorized.
 
-## Phase 4 - Minimal Architecture Authorization
+### Phase 4 - Minimal Architecture Authorization
 
 Status: COMPLETED
 
@@ -48,39 +59,66 @@ Purpose: authorize bounded/minimal architecture decisions and conceptual respons
 
 Product implementation: not authorized.
 
-Implementation planning: not authorized.
+### Phase 5 - Bounded Implementation Planning Authorization
+
+Status: COMPLETED
+
+Outputs:
+
+- `sdd/artifacts/PHASE_5_CONTRACT.yaml`
+- `sdd/artifacts/PHASE_5_IMPLEMENTATION_PLAN.yaml`
+
+Purpose: define governance-only implementation-planning authorization boundaries and readiness criteria without authorizing product build.
+
+Product implementation: not authorized.
 
 Product build: not authorized.
 
-## Next Likely Phase
+## Framework Closure Additions
 
-Phase 5 - Implementation Planning Authorization
+After Phase 5, the following framework-level additions were made:
 
-Status: FUTURE / NOT STARTED
+- `docs/sdd-plus/SDD_PLUS_LIFECYCLE.md`
+- `docs/rakso/RAKSO_OS_OPERATING_MODEL.md`
+- `docs/rakso/RAKSO_VELOCITY_MODE.md`
+- `docs/rakso/REPOSITORY_BOUNDARY.md`
+- `docs/phase-6b/DISCOVERY_TO_CONTRACT_BRIDGE.md`
+- README role model examples
 
-Purpose: may authorize implementation planning only if a committed Phase 5 contract allows it.
+These additions clarify:
 
-This phase must not assume product build is authorized.
+- RAKSO is tool-agnostic and capability-based.
+- SDD+ is a rules engine, not a permanent production bottleneck.
+- Velocity Mode limits planning loops.
+- Vehicles must live outside the compiler repo.
+- TaxPak is a vehicle, not the OS.
 
-## Future Build Phase
+## Current Repository Boundary
 
-Phase 6 or later - Product Build Authorization
+This repository is for RAKSO OS / compiler framework only.
 
-Status: FUTURE / NOT STARTED
+Vehicle-specific content is forbidden here.
 
-Product code only begins if explicitly authorized by a committed SDD+ contract.
+Forbidden vehicle content includes:
 
-## Hard Rules Learned
+- TaxPak discovery
+- TaxPak product scope
+- TaxPak MVP definition
+- TaxPak build plans
+- Bookkeeping AI discovery
+- Any vehicle-specific implementation package
 
-- No hardcoded lifecycle-state wording in contracts.
-- `STATE_SNAPSHOT.yaml` is the lifecycle source of truth.
-- Contract acceptance tests should reference the active SDD+ gate instead of hardcoding lifecycle states.
-- External blind audits are required before completion.
-- Self-approval is not allowed.
-- No implementation planning without committed contract authorization.
-- No build without committed contract authorization.
+Vehicle work must happen in a separate vehicle repo or workspace.
+
+Recommended first vehicle workspace:
+
+```text
+rakso-vehicle-taxpak
+```
 
 ## Current Forbidden Surface
+
+Unless a later committed SDD+ contract explicitly authorizes otherwise, this repo must not contain:
 
 - product implementation code
 - product schemas
@@ -94,21 +132,50 @@ Product code only begins if explicitly authorized by a committed SDD+ contract.
 - data models
 - infrastructure or deployment behavior
 - workflow automation
-- implementation planning
 - product build authorization
+- vehicle-specific discovery or product scope
 
-## Current Artifact Chain
+## Known Gaps Not Blocking Vehicle Discovery
 
-```txt
-sdd/artifacts/STATE_SNAPSHOT.yaml
-sdd/artifacts/PHASE_1_DISCOVERY.yaml
-sdd/artifacts/PHASE_2_BOUNDARY.yaml
-sdd/artifacts/PHASE_3_READINESS.yaml
-sdd/artifacts/PHASE_4_ARCHITECTURE.yaml
+These remain open but do not block starting TaxPak in a separate vehicle workspace:
+
+- `STATE_SNAPSHOT.yaml` needs a later refresh.
+- CI enforcement is not implemented yet.
+- Formal Phase 5 audit report is not committed yet.
+- Standalone SDD+ repo synchronization is unresolved.
+
+These are hardening tasks, not blockers for discovery-only vehicle processing.
+
+## Next Action
+
+Start TaxPak in a separate vehicle workspace or chat.
+
+Recommended action:
+
+```text
+Open or continue TaxPak Discovery Investigation chat and create/use a separate TaxPak vehicle repo or workspace.
 ```
+
+## Chat / Workspace Guidance
+
+Use the existing TaxPak Discovery Investigation chat if it already contains discovery evidence and context.
+
+Use a new chat only if the existing chat is too polluted or hard to navigate.
+
+Do not continue TaxPak inside the RAKSO compiler chat except for framework-level decisions.
+
+## Next Vehicle Rule
+
+TaxPak must enter as vehicle input to RAKSO, not as part of RAKSO.
+
+TaxPak discovery remains discovery-only until evidence answers the required pain questions.
+
+No TaxPak product scope, MVP build, architecture, agents, workflows, integrations, schemas, code, or deployment should be created until the TaxPak vehicle repo has its own committed contract.
 
 ## Current Roadmap Interpretation
 
-Phases 0 through 4 are completed. The repository is governed by SDD+ and has reached bounded/minimal architecture authorization only.
+The compiler framework is ready enough to process the first vehicle.
 
-The next phase may consider implementation planning authorization, but only through a new committed SDD+ contract. Product build remains unauthorized until a later committed contract explicitly permits it.
+The next workstream is not more compiler governance.
+
+The next workstream is TaxPak discovery in a separate vehicle workspace.
