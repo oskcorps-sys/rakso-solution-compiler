@@ -2,70 +2,147 @@
 
 ## Definition
 
-RAKSO Solution Compiler is an internal system for turning messy business reality into governed solution evidence, bounded scope, and eventually executable delivery only when SDD+ explicitly authorizes it.
+RAKSO Solution Compiler is the framework layer of RAKSO OS.
 
-The current repository is not in product-build mode. It is in an SDD+ governed lifecycle where each phase must be specified, contracted, implemented within scope, audited, and completed before later authority can exist.
+It turns messy business reality into governed evidence, diagnosis, money logic, offer direction, SDD+ contracts, and controlled execution scopes when authorized.
+
+This repository is not a vehicle repository.
+
+It must remain reusable across vehicles such as TaxPak, Bookkeeping AI, Credit tools, and future verticals.
+
+## Repository Boundary
+
+`rakso-solution-compiler` contains the RAKSO framework only:
+
+- RAKSO OS doctrine
+- Operating model
+- Velocity mode
+- SDD+ lifecycle rules
+- SDD Guard governance
+- Generic discovery-to-contract bridge
+- Generic compiler rules
+- Generic decision and audit patterns
+
+Vehicle-specific work must live outside this repository.
+
+TaxPak discovery, TaxPak product scope, TaxPak MVP definition, customer evidence, and TaxPak implementation work must not be stored here.
+
+Vehicle work belongs in a separate vehicle repository or workspace, such as:
+
+```text
+rakso-vehicle-taxpak
+rakso-vehicle-bookkeeping
+rakso-vehicle-credit
+```
+
+Names may change. The separation rule does not.
+
+## Operating Model
+
+RAKSO is repo-native, model-agnostic, tool-agnostic, and semi-automatic.
+
+It is defined by capabilities, not vendor names:
+
+- Command Brain
+- Primary Executor
+- Secondary Executor
+- Orchestration Layer
+- External Audit Layer
+- Rules Engine
+- Source of Truth
+- Drift Guard
+- Human Operator
+
+Specific tools may fill these roles, but no tool is permanent. Vendor changes must not break RAKSO.
 
 ## Operating Governance
 
-SDD+ is the operating governance for this repository. It is not an optional add-on, integration, or documentation layer.
+SDD+ is the rules engine and contract system for this repository.
 
-The active source of truth is the SDD+ artifact chain:
+SDD+ must govern uncertainty, close scope, define allowed and forbidden surfaces, and protect against hallucination and scope creep.
 
-- `sdd/artifacts/STATE_SNAPSHOT.yaml`
-- `sdd/artifacts/PHASE_1_DISCOVERY.yaml`
-- `sdd/artifacts/PHASE_2_BOUNDARY.yaml`
-- `sdd/artifacts/PHASE_3_READINESS.yaml`
-- `sdd/artifacts/PHASE_4_ARCHITECTURE.yaml`
+Once a committed contract authorizes work, SDD+ must stop acting as a step-by-step production gatekeeper and become the contract oracle and audit layer.
 
-Committed SDD+ contracts define what work is allowed. `STATE_SNAPSHOT.yaml` defines the lifecycle state. Public docs are explanatory only and cannot authorize implementation, schemas, modules, integrations, workflows, prompts, tools, agents, AI behavior, runtime orchestration, implementation planning, or product build.
+Core rule:
 
-## Completed SDD+ Phase Chain
+```text
+SDD+ governs uncertainty.
+Contracts govern execution.
+Tests govern behavior.
+Audits govern drift.
+The human operator governs direction.
+```
+
+## Velocity Mode
+
+Velocity Mode is active for the compiler framework.
+
+Normal cycle:
+
+```text
+1. Decide target
+2. Produce artifact or decision
+3. Audit once and move on
+```
+
+Velocity Mode exists to prevent planning loops, repeated permission loops, and digital bureaucracy.
+
+## Current SDD+ Phase Chain
 
 Phase 0: Genesis / governance setup - COMPLETED
 
-- Established the SDD+ lifecycle foundation.
-- Created the initial state snapshot and governance baseline.
-- Product implementation was not authorized.
-
 Phase 1: Discovery and problem definition - COMPLETED
-
-- Output: `sdd/artifacts/PHASE_1_DISCOVERY.yaml`
-- Defined the business problem, source-of-truth boundaries, evidence requirements, assumptions, open questions, non-goals, forbidden surface, and readiness criteria.
-- Product implementation was not authorized.
 
 Phase 2: Solution boundary definition - COMPLETED
 
-- Output: `sdd/artifacts/PHASE_2_BOUNDARY.yaml`
-- Defined solution-boundary decisions, allowed scope, evidence classification rules, open questions, deferrals, and forbidden surface.
-- Product implementation was not authorized.
-
 Phase 3: Architecture readiness definition - COMPLETED
-
-- Output: `sdd/artifacts/PHASE_3_READINESS.yaml`
-- Defined what evidence must exist before architecture can be authorized.
-- Architecture design, implementation planning, and product build were not authorized.
 
 Phase 4: Minimal architecture authorization - COMPLETED
 
-- Output: `sdd/artifacts/PHASE_4_ARCHITECTURE.yaml`
-- Authorized bounded/minimal architecture decisions and conceptual responsibility framing only.
-- Product implementation, implementation planning, and product build remain forbidden.
+Phase 5: Bounded implementation planning authorization - COMPLETED
 
-## Current Architecture Rule
+Phase 5 did not authorize product build, product implementation, executable schemas, modules, runtime integrations, workflows, prompts, tools, agents, deployment, APIs, data models, infrastructure, or source code.
 
-Phase 4 authorizes bounded/minimal architecture only.
+## Current Framework Components
 
-Allowed current architecture surface:
+The compiler framework now includes:
 
-- high-level architecture decisions traceable to Phase 3 readiness evidence
-- conceptual component-boundary framing
-- responsibility naming without executable design
-- source-of-truth precedence
-- readiness criteria for a later phase to decide whether implementation planning may be considered
+- `README.md`
+- `docs/00_DOCTRINE.md`
+- `docs/01_BLUEPRINT.md`
+- `docs/02_ROADMAP.md`
+- `docs/03_CRITICAL_LENS.md`
+- `docs/04_SDD_PLUS_INTEGRATION.md`
+- `docs/rakso/RAKSO_OS_OPERATING_MODEL.md`
+- `docs/rakso/RAKSO_VELOCITY_MODE.md`
+- `docs/rakso/REPOSITORY_BOUNDARY.md`
+- `docs/sdd-plus/SDD_PLUS_LIFECYCLE.md`
+- `docs/sdd-guard/*`
+- `docs/phase-6b/DISCOVERY_TO_CONTRACT_BRIDGE.md`
+- `sdd/artifacts/*`
 
-Forbidden current surface:
+## Current System Shape
 
+```text
+RAKSO OS / Compiler Framework
+  -> Operating Model
+  -> Repository Boundary
+  -> SDD+ Lifecycle
+  -> Velocity Mode
+  -> SDD Guard
+  -> Generic Discovery-to-Contract Bridge
+  -> Vehicle Repos / Workspaces
+```
+
+The compiler processes vehicles, but vehicles do not live inside the compiler repo.
+
+## Current Forbidden Surface In This Repo
+
+Unless explicitly authorized by a later committed SDD+ contract, this repo must not contain:
+
+- vehicle-specific discovery
+- vehicle-specific product scope
+- vehicle-specific MVP definition
 - product implementation code
 - product schemas
 - executable modules
@@ -78,45 +155,35 @@ Forbidden current surface:
 - data models
 - infrastructure or deployment behavior
 - workflow automation
-- implementation planning
 - product build authorization
 
-## Conceptual Future Capabilities
+## Current Known Gaps
 
-Older blueprint layers remain useful vocabulary for future RAKSO Solution Compiler capability, but they are conceptual only unless a future committed SDD+ contract explicitly authorizes them.
+These gaps are known but do not block starting TaxPak discovery in a separate vehicle workspace:
 
-Conceptual future layers include:
+- `STATE_SNAPSHOT.yaml` still needs a later state refresh.
+- CI enforcement is not implemented yet.
+- Formal Phase 5 audit report is not committed yet.
+- Standalone SDD+ repo synchronization is unresolved.
 
-- Input Router
-- Evidence Ledger
-- Business Reality Diagnosis
-- Pain-to-Profit Branch
-- Offer Architecture Branch
-- Solution Type Decision
-- SDD+ Contract Builder
-- SpellWriter / Artifact Compiler
-- Execution Agent Profiles
-- Deployment Package
-- Market Expansion Loop
+These are framework hardening tasks, not blockers for vehicle discovery.
 
-These names do not imply that product code, schemas, modules, integrations, workflows, prompts, tools, agents, AI behavior, runtime orchestration, implementation planning, or product build exists or is authorized now.
+## Next System Action
 
-## Current System Shape
+Do not put TaxPak discovery in this repo.
 
-The current system shape is a governed SDD+ artifact chain through completed Phase 4:
+Start TaxPak in a separate chat/workspace/repo using the compiler framework as the method source.
 
-```txt
-STATE_SNAPSHOT.yaml
-  -> PHASE_1_DISCOVERY.yaml
-  -> PHASE_2_BOUNDARY.yaml
-  -> PHASE_3_READINESS.yaml
-  -> PHASE_4_ARCHITECTURE.yaml
+Recommended target:
+
+```text
+rakso-vehicle-taxpak
 ```
-
-The repository has completed governance discovery, solution boundary, architecture readiness, and minimal architecture authorization. It has not started implementation planning or product build.
 
 ## Non-Negotiable Rule
 
-No product implementation begins until a later committed SDD+ contract explicitly authorizes it.
+RAKSO must survive independently from any vehicle.
 
-No implementation planning begins until a later committed SDD+ contract explicitly authorizes it.
+If TaxPak disappears, RAKSO must still function.
+
+If RAKSO needs TaxPak to make sense, the boundary has failed.
