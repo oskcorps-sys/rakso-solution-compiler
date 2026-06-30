@@ -2,22 +2,23 @@
 
 ## Definition
 
-RAKSO is a repo-native, model-agnostic, semi-automatic operating system operated by OZ to turn business chaos into evidence, decisions, contracts, offers, and controlled execution.
+RAKSO is a repo-native, model-agnostic, tool-agnostic, semi-automatic operating system operated by a human decision-maker to turn business chaos into evidence, decisions, contracts, offers, and controlled execution.
 
-RAKSO is not ChatGPT.
-RAKSO is not Codex.
+RAKSO is not a single AI model.
+RAKSO is not a single coding tool.
+RAKSO is not a single orchestration platform.
 RAKSO is not a SaaS yet.
 RAKSO is not TaxPak.
-RAKSO is not a single model, tool, interface, or vendor.
+RAKSO is not a vendor-specific stack.
 
-RAKSO is the operating system that coordinates tools, contracts, evidence, decisions, execution, and audit.
+RAKSO is the operating system that coordinates roles, tools, contracts, evidence, decisions, execution, and audit.
 
 ## Where RAKSO Lives
 
 The source of truth lives in:
 
 ```text
-GitHub repo
+GitHub repo or equivalent versioned repository
 versioned docs
 contracts
 state files
@@ -26,38 +27,61 @@ audit trails
 commits
 ```
 
-ChatGPT is a command interface, not the source of truth.
+A chat interface is a command surface, not the source of truth.
 
-If ChatGPT disappears, RAKSO must remain recoverable from the repo.
+If any specific AI provider, coding assistant, orchestrator, or audit tool disappears, RAKSO must remain recoverable from the repo and transferable to equivalent tools.
 
-## Core Stack
+## Capability Stack
 
-| Component | Role |
+RAKSO is defined by capabilities, not vendor names.
+
+| Capability | Required Role |
 |---|---|
-| ChatGPT | Command brain, strategy, blindspots, synthesis, adversarial thinking |
-| Codex | Primary executor for authorized repo work |
-| Jules | Secondary executor for tooling, docs, scripts, and auxiliary implementation when authorized |
-| Antigravity | Multi-agent orchestration when authorized |
-| Gemini | External audit and research validation |
-| DeepSeek | External audit, logic review, cost-efficient second opinion |
-| Claude / Sonnet | Optional external audit, copy, UX, textual red team |
-| SDD+ | Rules engine and contract system |
-| GitHub | Source control, verification, commit history, artifact truth |
-| SDD Guard | Lightweight automation, drift detection, state scan, next-action support |
-| OZ | Human operator and final authority |
+| Command Brain | Strategy, synthesis, blindspots, adversarial thinking, decision framing |
+| Primary Executor | Authorized repo work, implementation tasks, edits, commits, refactors when allowed |
+| Secondary Executor | Supporting docs, tooling, scripts, cleanup, auxiliary implementation when allowed |
+| Orchestration Layer | Multi-agent or multi-worker coordination when authorized |
+| External Audit Layer | Independent review, research validation, red-team logic, second opinion |
+| Rules Engine | SDD+ contracts, allowed scope, forbidden scope, acceptance criteria, lifecycle rules |
+| Source of Truth | Version control, committed artifacts, audit trail, state recovery |
+| Drift Guard | Lightweight state checks, stale wording checks, forbidden-surface checks, next-action checks |
+| Human Operator | Final authority, priority, direction, approval, denial, override, stop |
+
+## OZ Default Mapping
+
+The following is OZ's current preferred mapping. It is not part of the permanent RAKSO dependency model.
+
+| Capability | OZ Current Tool Choice |
+|---|---|
+| Command Brain | ChatGPT |
+| Primary Executor | Codex |
+| Secondary Executor | Jules |
+| Orchestration Layer | Antigravity |
+| External Audit Layer | Gemini, DeepSeek, Claude / Sonnet when useful |
+| Rules Engine | SDD+ |
+| Source of Truth | GitHub |
+| Drift Guard | SDD Guard |
+| Human Operator | OZ |
+
+This mapping may change without changing RAKSO itself.
+
+If Codex merges into another OpenAI interface, the Primary Executor role remains.
+If Gemini disappears, another audit engine can fill the External Audit role.
+If Antigravity becomes unavailable or too expensive, another orchestration layer can replace it.
+If GitHub is replaced, the Source of Truth role must move to an equivalent versioned repository.
 
 ## Operating Principle
 
 ```text
-ChatGPT commands.
-Codex executes.
-Jules supports.
-Antigravity coordinates.
-Gemini, DeepSeek, and Claude audit.
-SDD+ defines the rules.
-GitHub stores the truth.
-SDD Guard checks drift.
-OZ decides direction.
+The Command Brain frames.
+The Human Operator decides.
+The Rules Engine bounds.
+The Primary Executor executes authorized work.
+The Secondary Executor supports authorized work.
+The Orchestration Layer coordinates only when authorized.
+The External Audit Layer reviews when needed.
+The Source of Truth stores the state.
+The Drift Guard checks boundaries.
 ```
 
 ## What RAKSO Does
@@ -123,19 +147,19 @@ Input
 
 ## Authority Flow
 
-1. OZ sets direction.
-2. ChatGPT frames strategy and blindspots.
-3. SDD+ checks uncertainty and contract boundaries.
-4. Codex or Jules executes only authorized work.
-5. GitHub records all artifacts and commits.
-6. SDD Guard audits drift and next action.
+1. The Human Operator sets direction.
+2. The Command Brain frames strategy and blindspots.
+3. The Rules Engine checks uncertainty and contract boundaries.
+4. Executors execute only authorized work.
+5. The Source of Truth records all artifacts and commits.
+6. The Drift Guard audits drift and next action.
 7. External auditors review when needed.
 
 ## Vendor Independence Rule
 
 RAKSO must remain usable if any single provider disappears.
 
-If ChatGPT is unavailable, another model or a human operator must be able to continue from:
+If the current command brain is unavailable, another model or a human operator must be able to continue from:
 
 - repo state
 - operating model
@@ -149,10 +173,14 @@ If ChatGPT is unavailable, another model or a human operator must be able to con
 RAKSO may be used through:
 
 1. Chat interface now
-2. Codex / repo workflow now
+2. Repo workflow now
 3. CLI later if needed
 4. Private dashboard later if internal usage proves stable
 5. SaaS only after internal OS value is proven
+
+No interface is permanent.
+
+The interface can change without changing the OS.
 
 ## Current Position
 
