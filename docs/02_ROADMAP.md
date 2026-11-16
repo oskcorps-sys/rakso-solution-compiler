@@ -135,16 +135,17 @@ Unless a later committed SDD+ contract explicitly authorizes otherwise, this rep
 - product build authorization
 - vehicle-specific discovery or product scope
 
-## Known Gaps Not Blocking Vehicle Discovery
+## Closure Status and Remaining Gaps
 
-These remain open but do not block starting TaxPak in a separate vehicle workspace:
+The [state snapshot](../sdd/artifacts/STATE_SNAPSHOT.yaml) was refreshed for framework closure. It defines the active lifecycle state and points to discovery in a separate vehicle workspace as the next allowed action. The [framework closure report](rakso/COMPILER_FRAMEWORK_CLOSURE.md) records that alignment; it is not a separate machine-verifiable Phase 5 audit.
 
-- `STATE_SNAPSHOT.yaml` needs a later refresh.
-- CI enforcement is not implemented yet.
-- Formal Phase 5 audit report is not committed yet.
+The closure report records these remaining framework gaps:
+
+- CI enforcement and the formal SDD Guard CLI are not implemented.
+- A separate machine-verifiable Phase 5 audit artifact has not been committed.
 - Standalone SDD+ repo synchronization is unresolved.
 
-These are hardening tasks, not blockers for discovery-only vehicle processing.
+These gaps do not block discovery-only vehicle processing and do not authorize automation, executable planning, or product build. The [committed Phase 5 contract](../sdd/artifacts/PHASE_5_CONTRACT.yaml) governs scope.
 
 ## Next Action
 
